@@ -1,0 +1,8 @@
+.vs/
+/release
+/Tiled
+
+*.ps1
+
+*.cache
+/build

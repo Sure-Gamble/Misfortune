@@ -1,0 +1,17 @@
+#pragma once
+#include "SDL3/SDL_render.h"
+#include "camera.h"
+#include "spriteLibrary.h"
+
+struct Button;
+struct FontAtlas;
+
+enum class Alignment {
+  Left,
+  Centered
+};
+
+void RenderSprite_World(SpriteRenderInfo spriteInfo, SDL_Renderer* renderer, const Camera* camera, float x, float y, float scale = 1, float alpha = 1, bool flipped = false);
+void RenderButton(Button* button, bool is_selected, SDL_Renderer* renderer);
+void RenderButton_Dynamic(Button* button, bool is_selected, SDL_Renderer* renderer);
+void RenderText(FontAtlas* atlas, const char* text, SDL_Renderer* renderer, Camera* camera, const float x, const float y, Alignment alignment);

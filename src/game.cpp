@@ -1,0 +1,65 @@
+#include "game.h"
+#include "SDL3/SDL_blendmode.h"
+#include "SDL3/SDL_render.h"
+#include "audioSystem.h"
+#include "button.h"
+#include "dev_gui.h"
+#include "fontLibrary.h"
+#include "gameState.h"
+#include "imgui/imgui.h"
+#include "spriteLibrary.h"
+using namespace Memory;
+
+extern "C" {
+
+  void SetUpBoilerplate(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
+    DEV::Initialize(window, renderer);
+    InitializeAudioSystem(&data->audio, data->arena_main);
+    AssetManagement::LoadAllSFX(&data->audio);
+    AssetManagement::LoadAllSprites(data->spriteBuffer, renderer);
+    data->imGui_context = ImGui::GetCurrentContext();
+    AssetManagement::LoadFont(renderer, "assets/fonts/ByteBounce.ttf", &data->font, 48);
+
+    SDL_Texture* blackfade = GetSprite(SPRITE_ID::black_1x1, data->spriteBuffer)->texture;
+    SDL_SetTextureBlendMode(blackfade, SDL_BLENDMODE_BLEND);
+    // PlaySong(SONG_ID::THEME); // just muted for my sanity
+  }
+  
+  void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
+    SetUpBoilerplate(data, window, renderer);
+    
+  }
+   
+   bool HandleEvents(GameData *data, SDL_Event event){
+    DEV::ProcessEvents(&event);
+
+    if(event.type != SDL_EVENT_KEY_DOWN){
+        return true;
+    }
+    if(event.key.key == SDLK_ESCAPE){
+        return false;
+    }
+
+     return true;
+  }
+
+ void Update(GameData* data, float dt){
+    EditorData* editorData = &data->editor_data;
+
+  }
+     
+  void Draw(GameData* data, SDL_Renderer* renderer){
+    DEV::PreDraw(data->imGui_context);
+    SDL_SetRenderDrawColor(renderer, 155, 155, 155, 255);
+    SDL_RenderClear(renderer);
+
+        
+    DEV::Draw(data, renderer);
+    SDL_RenderPresent(renderer);
+  }
+
+  void OnQuit(SDL_Renderer* renderer){
+    SDL_DestroyRenderer(renderer);
+  }
+
+}
