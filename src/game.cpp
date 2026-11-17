@@ -54,12 +54,26 @@ extern "C" {
     SDL_RenderClear(renderer);
 
     // test draw card
-    int card_x = 100;
-    int card_y = 100;
-    SDL_FRect card_pos {100, 100, 100, 100};
+    int card_x = 200;
+    int card_y = 200;
+    SDL_FRect card_pos {200, 200, 200, 200};
 
     SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Card, data->spriteBuffer)->texture, NULL, &card_pos);
+
+    // test draw higherButton
+    int higherButton_x = 400;
+    int higherButton_y = 500;
+    SDL_FRect higherButton_pos {400, 500, 400, 500};
+
+    SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::HigherButton, data->spriteBuffer)->texture, NULL, &higherButton_pos);
         
+    // test draw lowerButton
+    int lowerButton_x = 400;
+    int lowerButton_y = 300;
+    SDL_FRect lowerButton_pos {400, 300, 400, 300};
+
+    SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::LowerButton, data->spriteBuffer)->texture, NULL, &lowerButton_pos);
+
     DEV::Draw(data, renderer);
     SDL_RenderPresent(renderer);
   }
