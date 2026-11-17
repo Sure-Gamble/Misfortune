@@ -13,7 +13,9 @@ static const SpriteDataEntry all_sprite_data[] = {
   {SPRITE_ID::Snake, "assets/sprites/snake.png"},
   {SPRITE_ID::Apple, "assets/sprites/apple.png"},
   {SPRITE_ID::Wall, "assets/sprites/wall.png"},
-  {SPRITE_ID::Ground, "assets/sprites/ground.png"}
+  {SPRITE_ID::Ground, "assets/sprites/ground.png"},
+
+  {SPRITE_ID::Card, "assets/sprites/card.png"}
   };
 
 Sprite* GetSprite(SPRITE_ID sprite_id, Sprite* spriteBuffer){

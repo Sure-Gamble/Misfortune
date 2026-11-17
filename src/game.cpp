@@ -53,6 +53,12 @@ extern "C" {
     SDL_SetRenderDrawColor(renderer, 155, 155, 155, 255);
     SDL_RenderClear(renderer);
 
+    // test draw card
+    int card_x = 100;
+    int card_y = 100;
+    SDL_FRect card_pos {100, 100, 100, 100};
+
+    SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Card, data->spriteBuffer)->texture, NULL, &card_pos);
         
     DEV::Draw(data, renderer);
     SDL_RenderPresent(renderer);

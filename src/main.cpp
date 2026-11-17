@@ -28,8 +28,8 @@ SDL_Renderer* renderer;
 Uint64 NOW = 0;
 Uint64 PREV = 0;
 
-constexpr const char* NAME_OF_DLL = "MISFORTUNE_game.dll";
-constexpr const char* NAME_OF_TEMP_DLL = "MISFORTUNE_temp.dll";
+constexpr const char* NAME_OF_DLL = "flappybird_game.dll";
+constexpr const char* NAME_OF_TEMP_DLL = "flappybird_temp.dll";
 
 typedef void (*Function_Initialize) (GameData* data, SDL_Window* window, SDL_Renderer* renderer);
 typedef bool (*Function_HandleEvents) (GameData* data, SDL_Event event);

@@ -9,7 +9,9 @@ enum class SPRITE_ID{
   Snake,
   Wall,
   Ground,
-  Apple
+  Apple,
+
+  Card
 };
 
 const int NOT_SET = -1;
