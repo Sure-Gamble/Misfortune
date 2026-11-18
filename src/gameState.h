@@ -6,13 +6,13 @@
 #include "imgui/imgui_internal.h"
 #include "input.h"
 #include "spriteLibrary.h"
+#include "card.h"
 
 struct EditorData{
   float* fps_buffer;
   int fps_buffer_count;
   int fps_buffer_index;
 };
-
 
 struct GameData {
   EditorData editor_data;
@@ -30,4 +30,9 @@ struct GameData {
   ImGuiContext* imGui_context;
   const float* dt;  
   float* dt_scaler;
+
+
+
+  static const int DECK_SIZE = 52;
+  Card cards[DECK_SIZE];
  };
