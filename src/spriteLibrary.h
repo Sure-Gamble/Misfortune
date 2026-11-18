@@ -13,7 +13,9 @@ enum class SPRITE_ID{
 
   Card,
   HigherButton,
-  LowerButton
+  LowerButton,
+
+  Ace_of_diamonds
 };
 
 const int NOT_SET = -1;

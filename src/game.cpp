@@ -9,6 +9,7 @@
 #include "imgui/imgui.h"
 #include "spriteLibrary.h"
 #include "card.h"
+#include <emmintrin.h>
 #include <iostream>
 #include <random>
 #include <chrono>
@@ -73,7 +74,11 @@ extern "C" {
         std::cout << data->cards[i].rank << " ";
     std::cout << std::endl;
     std::cout << "\n";
-    std::cout << data->cards[51].rank;
+   // std::cout << data->cards[51].rank;
+
+
+    
+
 // std::cout << "hello!";
 // std::cout << data->cards[3].suit;
 // std::cout << "\n";
@@ -98,6 +103,8 @@ extern "C" {
  void Update(GameData* data, float dt){
     EditorData* editorData = &data->editor_data;
 
+   // std::cout << data->cards[51].rank;
+
   }
      
   void Draw(GameData* data, SDL_Renderer* renderer){
@@ -105,17 +112,53 @@ extern "C" {
     SDL_SetRenderDrawColor(renderer, 155, 155, 155, 255);
     SDL_RenderClear(renderer);
 
-    // test draw card
-    Card card;
-    card.rank = 1;
-    card.suit = 1;
-    card.has_been_played = false;
+    // // test draw card
+    // Card card;
+    // card.rank = 1;
+    // card.suit = 1;
+    // card.has_been_played = false;
 
-    // int card_x = 200;
-    // int card_y = 200;
-    SDL_FRect card_pos {200, 200, 200, 200};
+    // // int card_x = 200;
+    // // int card_y = 200;
+    // SDL_FRect card_pos {200, 200, 200, 200};
 
-    SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Card, data->spriteBuffer)->texture, NULL, &card_pos);
+    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Card, data->spriteBuffer)->texture, NULL, &card_pos);
+
+// test draw the deck of cards
+int deck_x = data->cards->has_been_played = false;
+int deck_y = data->cards->has_been_played = false;
+SDL_FRect card_pos {(float)deck_x * 400, (float)deck_y * 400, 400, 400};
+
+
+
+
+
+    for (int i = 0; i < data->DECK_SIZE; ++i)
+    {
+      if (data->cards[i].has_been_played == false)
+      {
+     
+       if (data->cards[i].rank == 1 && data->cards[i].suit == 1)
+       {
+        
+        // std::cout << data->cards[i].rank << "\n";
+        // std::cout << data->cards[i].suit << "\n";
+
+        data->cards[i].has_been_played = true;
+
+        std::cout << "The Ace_of_diamonds was in postion:";
+        std::cout << i;
+
+        SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamonds, data->spriteBuffer)->texture, NULL, &card_pos);
+       
+       }
+        
+      }
+    }
+
+
+
+
 
     // test draw higherButton
     int higherButton_x = 400;
