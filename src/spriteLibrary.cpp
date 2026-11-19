@@ -19,7 +19,72 @@ static const SpriteDataEntry all_sprite_data[] = {
   {SPRITE_ID::HigherButton, "assets/sprites/snake.png"},
   {SPRITE_ID::LowerButton, "assets/sprites/wall.png"},
 
-  {SPRITE_ID::Ace_of_diamonds, "assets/sprites/Ace_of_diamonds.png"}
+  {SPRITE_ID::Ace_of_diamonds, "assets/sprites/cards/Ace_of_diamonds.png"},
+
+  {SPRITE_ID::Ace_of_club, "assets/sprites/cards/ace_of_club.png"},
+  {SPRITE_ID::Ace_of_diamond, "assets/sprites/cards/ace_of_diamond.png"},
+  {SPRITE_ID::Ace_of_heart, "assets/sprites/cards/ace_of_heart.png"},
+  {SPRITE_ID::Ace_of_spade, "assets/sprites/cards/ace_of_spade.png"},
+
+  {SPRITE_ID::Two_of_club, "assets/sprites/cards/2_of_club.png"},
+  {SPRITE_ID::Two_of_diamond, "assets/sprites/cards/2_of_diamond.png"},
+  {SPRITE_ID::Two_of_heart, "assets/sprites/cards/2_of_heart.png"},
+  {SPRITE_ID::Two_of_spade, "assets/sprites/cards/2_of_spade.png"},
+
+  {SPRITE_ID::Three_of_club, "assets/sprites/cards/3_of_club.png"},
+  {SPRITE_ID::Three_of_diamond, "assets/sprites/cards/3_of_diamond.png"},
+  {SPRITE_ID::Three_of_heart, "assets/sprites/cards/3_of_heart.png"},
+  {SPRITE_ID::Three_of_spade, "assets/sprites/cards/3_of_spade.png"},
+
+  {SPRITE_ID::Four_of_club, "assets/sprites/cards/4_of_club.png"},
+  {SPRITE_ID::Four_of_diamond, "assets/sprites/cards/4_of_diamond.png"},
+  {SPRITE_ID::Four_of_heart, "assets/sprites/cards/4_of_heart.png"},
+  {SPRITE_ID::Four_of_spade, "assets/sprites/cards/4_of_spade.png"},
+
+  {SPRITE_ID::Five_of_club, "assets/sprites/cards/5_of_club.png"},
+  {SPRITE_ID::Five_of_diamond, "assets/sprites/cards/5_of_diamond.png"},
+  {SPRITE_ID::Five_of_heart, "assets/sprites/cards/5_of_heart.png"},
+  {SPRITE_ID::Five_of_spade, "assets/sprites/cards/5_of_spade.png"},
+
+  {SPRITE_ID::Six_of_club, "assets/sprites/cards/6_of_club.png"},
+  {SPRITE_ID::Six_of_diamond, "assets/sprites/cards/6_of_diamond.png"},
+  {SPRITE_ID::Six_of_heart, "assets/sprites/cards/6_of_heart.png"},
+  {SPRITE_ID::Six_of_spade, "assets/sprites/cards/6_of_spade.png"},
+
+  {SPRITE_ID::Seven_of_club, "assets/sprites/cards/7_of_club.png"},
+  {SPRITE_ID::Seven_of_diamond, "assets/sprites/cards/7_of_diamond.png"},
+  {SPRITE_ID::Seven_of_heart, "assets/sprites/cards/7_of_heart.png"},
+  {SPRITE_ID::Seven_of_spade, "assets/sprites/cards/7_of_spade.png"},
+
+  {SPRITE_ID::Eight_of_club, "assets/sprites/cards/8_of_club.png"},
+  {SPRITE_ID::Eight_of_diamond, "assets/sprites/cards/8_of_diamond.png"},
+  {SPRITE_ID::Eight_of_heart, "assets/sprites/cards/8_of_heart.png"},
+  {SPRITE_ID::Eight_of_spade, "assets/sprites/cards/8_of_spade.png"},
+
+  {SPRITE_ID::Nine_of_club, "assets/sprites/cards/9_of_club.png"},
+  {SPRITE_ID::Nine_of_diamond, "assets/sprites/cards/9_of_diamond.png"},
+  {SPRITE_ID::Nine_of_heart, "assets/sprites/cards/9_of_heart.png"},
+  {SPRITE_ID::Nine_of_spade, "assets/sprites/cards/9_of_spade.png"},
+
+  {SPRITE_ID::Ten_of_club, "assets/sprites/cards/10_of_club.png"},
+  {SPRITE_ID::Ten_of_diamond, "assets/sprites/cards/10_of_diamond.png"},
+  {SPRITE_ID::Ten_of_heart, "assets/sprites/cards/10_of_heart.png"},
+  {SPRITE_ID::Ten_of_spade, "assets/sprites/cards/10_of_spade.png"},
+
+  {SPRITE_ID::Jack_of_club, "assets/sprites/cards/jack_of_club.png"},
+  {SPRITE_ID::Jack_of_diamond, "assets/sprites/cards/jack_of_diamond.png"},
+  {SPRITE_ID::Jack_of_heart, "assets/sprites/cards/jack_of_heart.png"},
+  {SPRITE_ID::Jack_of_spade, "assets/sprites/cards/jack_of_spade.png"},
+
+  {SPRITE_ID::Queen_of_club, "assets/sprites/cards/queen_of_club.png"},
+  {SPRITE_ID::Queen_of_diamond, "assets/sprites/cards/queen_of_diamond.png"},
+  {SPRITE_ID::Queen_of_heart, "assets/sprites/cards/queen_of_heart.png"},
+  {SPRITE_ID::Queen_of_spade, "assets/sprites/cards/queen_of_spade.png"},
+
+  {SPRITE_ID::King_of_club, "assets/sprites/cards/king_of_club.png"},
+  {SPRITE_ID::King_of_diamond, "assets/sprites/cards/king_of_diamond.png"},
+  {SPRITE_ID::King_of_heart, "assets/sprites/cards/king_of_heart.png"},
+  {SPRITE_ID::King_of_spade, "assets/sprites/cards/king_of_spade.png"}
   };
 
 Sprite* GetSprite(SPRITE_ID sprite_id, Sprite* spriteBuffer){

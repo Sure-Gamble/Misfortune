@@ -15,7 +15,72 @@ enum class SPRITE_ID{
   HigherButton,
   LowerButton,
 
-  Ace_of_diamonds
+  Ace_of_diamonds,
+
+  Ace_of_club,
+  Ace_of_diamond,
+  Ace_of_heart,
+  Ace_of_spade,
+
+  Two_of_club,
+  Two_of_diamond,
+  Two_of_heart,
+  Two_of_spade,
+
+  Three_of_club,
+  Three_of_diamond,
+  Three_of_heart,
+  Three_of_spade,
+
+  Four_of_club,
+  Four_of_diamond,
+  Four_of_heart,
+  Four_of_spade,
+
+  Five_of_club,
+  Five_of_diamond,
+  Five_of_heart,
+  Five_of_spade,
+
+  Six_of_club,
+  Six_of_diamond,
+  Six_of_heart,
+  Six_of_spade,
+
+  Seven_of_club,
+  Seven_of_diamond,
+  Seven_of_heart,
+  Seven_of_spade,
+
+  Eight_of_club,
+  Eight_of_diamond,
+  Eight_of_heart,
+  Eight_of_spade,
+
+  Nine_of_club,
+  Nine_of_diamond,
+  Nine_of_heart,
+  Nine_of_spade,
+
+  Ten_of_club,
+  Ten_of_diamond,
+  Ten_of_heart,
+  Ten_of_spade,
+
+  Jack_of_club,
+  Jack_of_diamond,
+  Jack_of_heart,
+  Jack_of_spade,
+
+  Queen_of_club,
+  Queen_of_diamond,
+  Queen_of_heart,
+  Queen_of_spade,
+
+  King_of_club,
+  King_of_diamond,
+  King_of_heart,
+  King_of_spade
 };
 
 const int NOT_SET = -1;
