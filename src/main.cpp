@@ -19,6 +19,7 @@
 #include "image.h"
 #include "input.h"
 #include "spriteLibrary.h"
+#include "valuebox.h"
 
 using namespace Memory;
 
@@ -114,9 +115,10 @@ void SDL_Setup(){
     SDL_Init(SDL_INIT_EVENTS);
     SDL_SetLogPriorities(SDL_LOG_PRIORITY_VERBOSE);
     TTF_Init();
-
+    
     window = SDL_CreateWindow("hell of a time", SCREEN_WIDTH, SCREEN_HEIGHT, 0);
     renderer = SDL_CreateRenderer(window, NULL);
+    //TTF_TextEngine *engine = TTF_CreateRendererTextEngine(renderer);
 }
 
 void CalculateDeltaTime(float* dt, float scaler){
@@ -215,6 +217,8 @@ int main() {
     gameData->dt = &dt;
     gameData->dt_scaler = &dt_scaler;
     int dll_check_counter = 0;
+
+
     
     while(gameData->running){
 

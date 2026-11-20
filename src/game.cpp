@@ -8,10 +8,13 @@
 #include "gameState.h"
 #include "imgui/imgui.h"
 #include "spriteLibrary.h"
+#include "valuebox.h"
+#include "panel.h"
 using namespace Memory;
 
 extern "C" {
-
+  ValueBox test_VB; // test
+  
   void SetUpBoilerplate(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
     DEV::Initialize(window, renderer);
     InitializeAudioSystem(&data->audio, data->arena_main);
@@ -27,6 +30,8 @@ extern "C" {
   
   void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
     SetUpBoilerplate(data, window, renderer);
+    data->mainPanel = new MainPanel{};
+    ValueBox_INIT(&test_VB);
     
   }
    
@@ -52,6 +57,11 @@ extern "C" {
     DEV::PreDraw(data->imGui_context);
     SDL_SetRenderDrawColor(renderer, 155, 155, 155, 255);
     SDL_RenderClear(renderer);
+    ValueBox_Display(&test_VB, renderer, &data->font, &data->camera); // Test 
+    InitializeLayout (data->mainPanel, renderer, data, &data->font, &data->camera); //Test
+    //SDL_RenderTexture(renderer, data->mainPanel->sidePanel.sprite->texture, NULL, &data->mainPanel->sidePanel.rect); //test
+    //SDL_RenderTexture(renderer, data->mainPanel->gamePanel.sprite->texture, NULL, &data->mainPanel->gamePanel.rect); //test
+    //SDL_RenderTexture(renderer, data->mainPanel->betPanel.sprite->texture, NULL, &data->mainPanel->betPanel.rect); //test
 
     // test draw card
     int card_x = 200;

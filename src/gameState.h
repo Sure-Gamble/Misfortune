@@ -6,6 +6,9 @@
 #include "imgui/imgui_internal.h"
 #include "input.h"
 #include "spriteLibrary.h"
+//#include "panel.h"
+struct MainPanel;
+
 
 struct EditorData{
   float* fps_buffer;
@@ -27,6 +30,7 @@ struct GameData {
   Memory::Arena* arena_input;
   Memory::Arena* arena_scratch;
   Camera camera;
+  MainPanel* mainPanel;
   ImGuiContext* imGui_context;
   const float* dt;  
   float* dt_scaler;
