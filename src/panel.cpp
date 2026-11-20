@@ -10,6 +10,29 @@
 //const int SCREEN_WIDTH;
 //const int SCREEN_HEIGHT;
 
+namespace PanelLayouts{
+    constexpr NormalizedRect MAIN_PANEL = {0.0f, 0.0f, 1.0f, 1.0f};
+    constexpr NormalizedRect SIDE_PANEL = {0.03f, 0.03f, 0.21f, 0.94f};
+    constexpr NormalizedRect GAME_PANEL = {0.27f, 0.03f, 0.70f, 0.62f};
+    constexpr NormalizedRect BET_PANEL = {0.27f, 0.70f, 0.70f, 0.27f};
+}
+
+SDL_FRect ToScreenRect(NormalizedRect layout){
+    return {layout.x * SCREEN_WIDTH, layout.y * SCREEN_HEIGHT, layout.width * SCREEN_WIDTH, layout.height * SCREEN_HEIGHT};
+}
+
+//void RenderPanel(Panel* panel, SDL_Renderer* renderer, Camera* camera){
+//    if(!panel->is_active || panel->sprite == nullptr) return;
+//    RenderSprite_World(SpriteRenderInfo(panel->sprite), renderer, camera, panel->rect.x, panel->rect.y, 1.0f, 1.0f, false);
+//}
+
+void RenderPanel(Panel* panel, SDL_Renderer* renderer){
+    if(!panel->is_active) return;
+    SDL_FRect rect = panel->rect;
+    SDL_SetRenderDrawColor(renderer, 190,190,190,255);
+    SDL_RenderFillRect(renderer, &rect);
+}
+
 void RenderSidePanel(SidePanel* side_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera){
     Sprite* button = GetSprite(SPRITE_ID::Button_Basic, data->spriteBuffer);
 
@@ -66,30 +89,40 @@ void RenderBetPanel(BetPanel* bet_panel, SDL_Renderer* renderer, GameData* data,
 	bet_panel-> total_bet_display = ValueBox({2400, 200, 350, 200},33);
 }
 
-void InitializeLayout (MainPanel* main_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera){
+void InitializeLayout (MainPanel* main_panel, GameData* data){
 
     main_panel->type = PANEL_TYPE::MAIN_PANEL;
     main_panel->is_active = true;
     main_panel->sprite = GetSprite(SPRITE_ID::Fallback, data->spriteBuffer);
-    main_panel->rect = {0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT};
+    main_panel->rect = ToScreenRect(PanelLayouts::MAIN_PANEL);
     // SIDE PANEL BASE
     main_panel->sidePanel.type = PANEL_TYPE::SIDE_PANEL;
     main_panel->sidePanel.is_active = true;
     main_panel->sidePanel.sprite = GetSprite(SPRITE_ID::Ground, data->spriteBuffer);
-    main_panel->sidePanel.rect = { 0.0f, 0.0f, 1075.0f, 2160.0f};
-    RenderSidePanel(&main_panel->sidePanel, renderer, data, font, camera);
+    main_panel->sidePanel.rect = ToScreenRect(PanelLayouts::SIDE_PANEL);
+    //
     // GAME PANEL BASE
     main_panel->gamePanel.type = PANEL_TYPE::GAME_PANEL;
     main_panel->gamePanel.is_active = true;
     main_panel->gamePanel.sprite = GetSprite(SPRITE_ID::Ground, data->spriteBuffer);
-    main_panel->gamePanel.rect = {1100.0f, 0.0f, 2700.0f, 1555.0f}; 
-    RenderGamePanel(&main_panel->gamePanel, renderer, data, font, camera);
+    main_panel->gamePanel.rect = ToScreenRect(PanelLayouts::GAME_PANEL);
+    //
     // BET PANEL BASE
     main_panel->betPanel.type = PANEL_TYPE::BET_PANEL;
     main_panel->betPanel.is_active = true;
     main_panel->betPanel.sprite = GetSprite(SPRITE_ID::Ground, data->spriteBuffer);
-    main_panel->betPanel.rect = {1250.0f, 1700.0f, 2800.0f, 430.0f};
-    RenderBetPanel(&main_panel->betPanel, renderer, data, font, camera);
-
-
+    main_panel->betPanel.rect = ToScreenRect(PanelLayouts::BET_PANEL);
+    //
 };
+
+void RenderMainPanel(MainPanel* main_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera){
+    if (!main_panel->is_active) return;
+    RenderPanel(&main_panel->sidePanel, renderer);
+    RenderPanel(&main_panel->gamePanel, renderer);
+    RenderPanel(&main_panel->betPanel, renderer);
+
+    //RenderSidePanel(&main_panel->sidePanel, renderer, data, font, camera);
+    //RenderGamePanel(&main_panel->gamePanel, renderer, data, font, camera);
+    //RenderBetPanel(&main_panel->betPanel, renderer, data, font, camera);
+    
+}

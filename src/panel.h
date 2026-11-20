@@ -5,8 +5,21 @@
 #include "valuebox.h"
 #include "gameState.h"
 
+struct GameData;
 struct Sprite;
 struct Button;
+
+struct NormalizedRect{
+	float x;
+	float y;
+	float width;
+	float height;
+};
+
+struct PanelLayout{
+	NormalizedRect bounds;
+	float padding;
+};
 
 enum class PANEL_TYPE{
     NONE,
@@ -18,6 +31,7 @@ enum class PANEL_TYPE{
 
 struct Panel{	
     PANEL_TYPE type;
+	//NormalizedRect layout;
 	SDL_FRect rect;
     Sprite* sprite;
 	bool is_active;
@@ -71,7 +85,9 @@ struct MainPanel : Panel {
 
 };
 
+SDL_FRect ToScreenRect(NormalizedRect layout);
+void RenderMainPanel(MainPanel* main_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera);
 void RenderSidePanel(SidePanel* side_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera);
 void RenderGamePanel(GamePanel* game_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera);
 void RenderBetPanel(BetPanel* bet_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera);
-void InitializeLayout (MainPanel* main_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera);
+void InitializeLayout (MainPanel* main_panel, GameData* data);

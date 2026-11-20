@@ -1,19 +1,52 @@
-#include "game.h"
-#include "SDL3/SDL_blendmode.h"
-#include "SDL3/SDL_render.h"
 #include "audioSystem.h"
 #include "button.h"
+#include "common.h"
 #include "dev_gui.h"
 #include "fontLibrary.h"
+#include "game.h"
 #include "gameState.h"
 #include "imgui/imgui.h"
+#include "panel.h"
 #include "spriteLibrary.h"
 #include "valuebox.h"
-#include "panel.h"
+
+#include "SDL3/SDL_blendmode.h"
+#include "SDL3/SDL_render.h"
+#include "SDL3/SDL.h"
+
+#include <algorithm>
+
 using namespace Memory;
 
 extern "C" {
   ValueBox test_VB; // test
+
+  bool ConfigureGameViewport(SDL_Window* window,SDL_Renderer* renderer, ScreenInfo* screen){
+    
+    if(!SDL_SetWindowFullscreen(window, true)){
+      SDL_Log("Fullscreen error %s", SDL_GetError());
+      return false;
+    }
+
+    if(!SDL_GetRenderOutputSize(renderer, &screen->monitor_width, &screen->monitor_height)){
+      SDL_Log("Renderer output error: %s", SDL_GetError());
+      return false;
+    }
+
+    float scale_x = (float)screen->monitor_width/SCREEN_WIDTH;
+    float scale_y = (float)screen->monitor_height/SCREEN_HEIGHT;
+    screen->scale = std::min(scale_x, scale_y);
+    screen->viewport.w = SCREEN_WIDTH * screen->scale;
+    screen->viewport.h = SCREEN_HEIGHT * screen->scale;
+    screen->viewport.x = (screen->monitor_width - screen->viewport.w) / 2.0f;
+    screen->viewport.y = (screen->monitor_height - screen->viewport.h) / 2.0f;
+
+    if (!SDL_SetRenderLogicalPresentation(renderer, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_LOGICAL_PRESENTATION_LETTERBOX)){
+      SDL_Log("Logical presentation error: %s", SDL_GetError());
+      return false;
+    }
+    return true;
+  }
   
   void SetUpBoilerplate(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
     DEV::Initialize(window, renderer);
@@ -30,7 +63,12 @@ extern "C" {
   
   void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
     SetUpBoilerplate(data, window, renderer);
+    if (!ConfigureGameViewport(window, renderer, &data->screen)){
+      data->running = false;
+      return;
+    }
     data->mainPanel = new MainPanel{};
+    InitializeLayout(data->mainPanel, data);
     ValueBox_INIT(&test_VB);
     
   }
@@ -55,34 +93,17 @@ extern "C" {
      
   void Draw(GameData* data, SDL_Renderer* renderer){
     DEV::PreDraw(data->imGui_context);
-    SDL_SetRenderDrawColor(renderer, 155, 155, 155, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
-    ValueBox_Display(&test_VB, renderer, &data->font, &data->camera); // Test 
-    InitializeLayout (data->mainPanel, renderer, data, &data->font, &data->camera); //Test
-    //SDL_RenderTexture(renderer, data->mainPanel->sidePanel.sprite->texture, NULL, &data->mainPanel->sidePanel.rect); //test
-    //SDL_RenderTexture(renderer, data->mainPanel->gamePanel.sprite->texture, NULL, &data->mainPanel->gamePanel.rect); //test
-    //SDL_RenderTexture(renderer, data->mainPanel->betPanel.sprite->texture, NULL, &data->mainPanel->betPanel.rect); //test
+    //ValueBox_Display(&test_VB, renderer, &data->font, &data->camera); // Test 
+    //InitializeLayout (data->mainPanel, renderer, data, &data->font, &data->camera); //Test
+    // test for paneling
+    SDL_FRect test = {0.0f, 0.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT};
+    SDL_SetRenderDrawColor(renderer, 50, 100, 180, 255);
+    SDL_RenderFillRect(renderer, &test);
 
-    // test draw card
-    int card_x = 200;
-    int card_y = 200;
-    SDL_FRect card_pos {200, 200, 200, 200};
+    RenderMainPanel(data->mainPanel, renderer, data, &data->font, &data->camera);
 
-    SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Card, data->spriteBuffer)->texture, NULL, &card_pos);
-
-    // test draw higherButton
-    int higherButton_x = 400;
-    int higherButton_y = 500;
-    SDL_FRect higherButton_pos {400, 500, 400, 500};
-
-    SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::HigherButton, data->spriteBuffer)->texture, NULL, &higherButton_pos);
-        
-    // test draw lowerButton
-    int lowerButton_x = 400;
-    int lowerButton_y = 300;
-    SDL_FRect lowerButton_pos {400, 300, 400, 300};
-
-    SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::LowerButton, data->spriteBuffer)->texture, NULL, &lowerButton_pos);
 
     DEV::Draw(data, renderer);
     SDL_RenderPresent(renderer);
