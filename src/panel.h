@@ -86,6 +86,7 @@ struct MainPanel : Panel {
 };
 
 SDL_FRect ToScreenRect(NormalizedRect layout);
+void RenderPanelMockup(MainPanel* main_panel, SDL_Renderer* renderer);
 void RenderMainPanel(MainPanel* main_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera);
 void RenderSidePanel(SidePanel* side_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera);
 void RenderGamePanel(GamePanel* game_panel, SDL_Renderer* renderer, GameData* data, FontAtlas* font, Camera* camera);

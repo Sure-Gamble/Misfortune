@@ -103,6 +103,7 @@ extern "C" {
     SDL_RenderFillRect(renderer, &test);
 
     RenderMainPanel(data->mainPanel, renderer, data, &data->font, &data->camera);
+    RenderPanelMockup(data->mainPanel, renderer);
 
 
     DEV::Draw(data, renderer);
