@@ -14,6 +14,13 @@ static const SpriteDataEntry all_sprite_data[] = {
   {SPRITE_ID::Apple, "assets/sprites/apple.png"},
   {SPRITE_ID::Wall, "assets/sprites/wall.png"},
   {SPRITE_ID::Ground, "assets/sprites/ground.png"},
+  {SPRITE_ID::Ground2, "assets/sprites/ground.png"},
+  {SPRITE_ID::Ground3, "assets/sprites/ground.png"},
+  {SPRITE_ID::Ground4, "assets/sprites/ground.png"},
+  {SPRITE_ID::Ground5, "assets/sprites/ground.png"},
+  {SPRITE_ID::Ground6, "assets/sprites/ground.png"},
+  {SPRITE_ID::Ground7, "assets/sprites/ground.png"},
+  {SPRITE_ID::Ground8, "assets/sprites/ground.png"},
 
   {SPRITE_ID::Card, "assets/sprites/card.png"},
   {SPRITE_ID::HigherButton, "assets/sprites/snake.png"},
@@ -84,7 +91,13 @@ static const SpriteDataEntry all_sprite_data[] = {
   {SPRITE_ID::King_of_club, "assets/sprites/cards/king_of_club.png"},
   {SPRITE_ID::King_of_diamond, "assets/sprites/cards/king_of_diamond.png"},
   {SPRITE_ID::King_of_heart, "assets/sprites/cards/king_of_heart.png"},
-  {SPRITE_ID::King_of_spade, "assets/sprites/cards/king_of_spade.png"}
+  {SPRITE_ID::King_of_spade, "assets/sprites/cards/king_of_spade.png"},
+
+  {SPRITE_ID::Higher, "assets/sprites/higher.png"},
+  {SPRITE_ID::Lower, "assets/sprites/lower.png"},
+  {SPRITE_ID::PlayerGuessedWrong, "assets/sprites/wrong.png"},
+  {SPRITE_ID::BothCardsWereEqual, "assets/sprites/equal.png"},
+  {SPRITE_ID::layoutTest, "assets/sprites/layoutTest.png"}
   };
 
 Sprite* GetSprite(SPRITE_ID sprite_id, Sprite* spriteBuffer){

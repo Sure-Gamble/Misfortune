@@ -4,12 +4,19 @@
 
 enum class SPRITE_ID{
   Fallback,
-  black_1x1,
-  Button_Basic,
-  Snake,
-  Wall,
-  Ground,
-  Apple,
+   black_1x1,
+   Button_Basic,
+   Snake,
+   Wall,
+   Ground,
+   Ground2,
+   Ground3,
+   Ground4,
+   Ground5,
+   Ground6,
+   Ground7,
+   Ground8,
+   Apple,
 
   Card,
   HigherButton,
@@ -80,7 +87,13 @@ enum class SPRITE_ID{
   King_of_club,
   King_of_diamond,
   King_of_heart,
-  King_of_spade
+  King_of_spade,
+
+  Higher,
+  Lower,
+  PlayerGuessedWrong,
+  BothCardsWereEqual,
+  layoutTest
 };
 
 const int NOT_SET = -1;

@@ -35,4 +35,8 @@ struct GameData {
 
   static const int DECK_SIZE = 52;
   Card cards[DECK_SIZE];
+  int roundIndex;
+  int drawTheCorrectCardOnScreen;
+  int drawThePreviousCardOnScreen;
+  int higherOrLower;
  };

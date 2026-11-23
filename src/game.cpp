@@ -3,6 +3,7 @@
 #include "SDL3/SDL_events.h"
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_scancode.h"
+#include "SDL3/SDL_video.h"
 #include "audioSystem.h"
 #include "button.h"
 #include "dev_gui.h"
@@ -37,29 +38,32 @@ extern "C" {
   void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
     SetUpBoilerplate(data, window, renderer);
     
+  data->roundIndex = 0;
+  data->drawTheCorrectCardOnScreen = 0;
+  data->drawThePreviousCardOnScreen = 0;
+
   for (int i = 0; i < data->DECK_SIZE; ++i){
-  Card* card = &data->cards[i];
+  // Card* card = &data->cards[i];
 
   data->cards[i].suit = i % 4 + 1;
   data->cards[i].rank = i % 13 + 1; 
   data->cards[i].has_been_played = false;
 
+  // card[i].suit = i % 4 + 1; // 4 suits
+  // card[i].rank = i % 13 + 1; // 13 values
+  // card[i].has_been_played = false;
 
-  card[i].suit = i % 4 + 1; // 4 suits
-  card[i].rank = i % 13 + 1; // 13 values
-  card[i].has_been_played = false;
-
-  std::cout << "New Card";
-  std::cout << "\n";
-  std::cout << card[i].suit;
-  std::cout << "\n";
-  std::cout << "\n";
-  std::cout << card[i].rank;
-  std::cout << "\n";
-  std::cout << "\n";
-  std::cout << card[i].has_been_played;
-  std::cout << "\n";
-  std::cout << "\n";
+  // std::cout << "New Card";
+  // std::cout << "\n";
+  // std::cout << card[i].suit;
+  // std::cout << "\n";
+  // std::cout << "\n";
+  // std::cout << card[i].rank;
+  // std::cout << "\n";
+  // std::cout << "\n";
+  // std::cout << card[i].has_been_played;
+  // std::cout << "\n";
+  // std::cout << "\n";
 };
 
 
@@ -103,10 +107,85 @@ extern "C" {
      return true;
   }
 
- void Update(GameData* data, float dt){
+  void Update(GameData* data, float dt){
     EditorData* editorData = &data->editor_data;
 
     // Loop for player's choice, simply compare it with the array, no need to loop array while player makes choice(?)
+
+        
+
+         int currentlyShownCardRank = data->cards[data->roundIndex].rank;
+         int pickedCardRank = data->cards[data->roundIndex + 1].rank; // will crash if deck does not contain any cards!
+
+         bool playerPressedUp = KeyPressed(&data->input, SDL_SCANCODE_UP);
+         bool playerPressedDown = KeyPressed(&data->input, SDL_SCANCODE_DOWN);
+
+         bool pickedCardRankIsHigher = pickedCardRank > currentlyShownCardRank;
+         bool pickedCardRankIsLower = pickedCardRank < currentlyShownCardRank;
+
+
+         if(playerPressedUp == true || playerPressedDown == true)
+         {
+            if (playerPressedUp == true && pickedCardRankIsHigher == true && pickedCardRank != currentlyShownCardRank)
+            {
+                // increase the score here
+
+                data->higherOrLower = 70;
+            }
+            if (playerPressedUp == true && pickedCardRankIsHigher == false && pickedCardRank != currentlyShownCardRank)
+            {
+                // increase the score here
+
+                data->higherOrLower = 72;
+            }
+            else if (playerPressedDown == true && pickedCardRankIsLower == true && pickedCardRank != currentlyShownCardRank)
+            {
+                // increase the score here
+
+                data->higherOrLower = 71;
+            }
+            else if (playerPressedDown == true && pickedCardRankIsLower == false && pickedCardRank != currentlyShownCardRank)
+            {
+                // increase the score here
+
+                data->higherOrLower = 72;
+            }
+            else if (pickedCardRank == currentlyShownCardRank)
+            {
+                data->higherOrLower = 73;
+            }
+            data->roundIndex++;
+         }
+
+         // if(KeyPressed(&data->input, SDL_SCANCODE_UP) && pickedCardRank > currentlyShownCardRank)
+         // {
+
+         //     // increase the score here
+
+         //    data->roundIndex++;
+
+         //     std::cout << "\n";
+         //     std::cout << "The picked card was higher than the shown one! You win!";
+         //     std::cout << "\n";
+         //     std::cout << "test";
+
+            
+         // }
+
+         // if (KeyPressed(&data->input, SDL_SCANCODE_DOWN) && pickedCardRank < currentlyShownCardRank)
+         // {
+
+         //     data->roundIndex++;
+
+         //     // game over here(?)
+
+         //     std::cout << "\n";
+         //     std::cout << "The picked card was lower than the shown one! You lose!";
+         //     std::cout << "\n";
+
+             
+         // }
+
 
 
     // fetch pointers
@@ -167,56 +246,56 @@ extern "C" {
 
 
 
-    for (int i = 0; i < data->DECK_SIZE; i++)
-    {
-      int currentlyShownCardRank = data->cards[i].rank;
-      int pickedCardRank = data->cards[i + 1].rank; // will crash if deck does not contain any cards!
+//     for (int i = 0; i < data->DECK_SIZE; i++)
+//     {
+//       int currentlyShownCardRank = data->cards[i].rank;
+//       int pickedCardRank = data->cards[i + 1].rank; // will crash if deck does not contain any cards!
 
-      int currentlyShownCardSuit = data->cards[i].suit;
-      int pickedCardSuit = data->cards[i + 1].suit;
+//       int currentlyShownCardSuit = data->cards[i].suit;
+//       int pickedCardSuit = data->cards[i + 1].suit;
 
-      if (data->cards[i].has_been_played == false)
-      {
+//       if (data->cards[i].has_been_played == false)
+//       {
 
-       // std::cout << "\n";
-       // std::cout << currentlyShownCardRank;
-       // std::cout << "\n";
-       // std::cout << pickedCardRank;
-
-
-
-       //  bool higherOrLower = SDL_WaitEvent(KeyPressed(&data->input, SDL_SCANCODE_UP));
+//        // std::cout << "\n";
+//        // std::cout << currentlyShownCardRank;
+//        // std::cout << "\n";
+//        // std::cout << pickedCardRank;
 
 
 
-        if(KeyPressed(&data->input, SDL_SCANCODE_UP) && pickedCardRank > currentlyShownCardRank)
-        {
+//        //  bool higherOrLower = SDL_WaitEvent(KeyPressed(&data->input, SDL_SCANCODE_UP));
 
-            // increase the score here
 
-            std::cout << "\n";
-            std::cout << "The picked card was higher than the shown one! You win!";
-            std::cout << "\n";
-            std::cout << "test";
 
-            
-        }
+//         if(KeyPressed(&data->input, SDL_SCANCODE_UP) && pickedCardRank > currentlyShownCardRank)
+//         {
 
-        if(KeyPressed(&data->input, SDL_SCANCODE_DOWN) && pickedCardRank < currentlyShownCardRank)
-        {
+//             // increase the score here
 
-            // game over here(?)
-
-            std::cout << "\n";
-            std::cout << "The picked card was lower than the shown one! You lose!";
-            std::cout << "\n";
+//             std::cout << "\n";
+//             std::cout << "The picked card was higher than the shown one! You win!";
+//             std::cout << "\n";
+//             std::cout << "test";
 
             
+//         }
+
+//         if(KeyPressed(&data->input, SDL_SCANCODE_DOWN) && pickedCardRank < currentlyShownCardRank)
+//         {
+
+//             // game over here(?)
+
+//             std::cout << "\n";
+//             std::cout << "The picked card was lower than the shown one! You lose!";
+//             std::cout << "\n";
+
+            
 
 
-        }
-    }
-}
+//         }
+//     }
+// }
 }    
 
    void Draw(GameData* data, SDL_Renderer* renderer){
@@ -240,11 +319,10 @@ extern "C" {
 // int deck_x = data->cards->has_been_played = false;
 // int deck_y = data->cards->has_been_played = false;
     
-    SDL_FRect card_pos {400, 400, 400, 400};
-    SDL_FRect card_pos2 {200, 200, 200, 200};
-
-    int i = 0;
-
+    SDL_FRect card_pos3 {16, 256, 200, 300};
+    SDL_FRect card_pos {1125, 75, 300, 400};
+    SDL_FRect card_pos2 {600, 600, 600, 600};
+    SDL_FRect card_pos4 {1, 1, 1920, 1080};
     
 
 
@@ -305,8 +383,529 @@ extern "C" {
     // }
 
 
-    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID(13), data->spriteBuffer)->texture, NULL, &card_pos);
-    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_spade, data->spriteBuffer)->texture, NULL, &card_pos2);
+
+
+
+    // card_pos.w = 64;
+    // card_pos.h = 1.5 * card_pos.w;
+    // for (int i = (int)SPRITE_ID::Fallback; i <= (int)SPRITE_ID::King_of_spade; ++i) {
+    //     card_pos.x = (i % 12) * card_pos.w;
+    //     card_pos.y = (i / 12) * card_pos.h;
+    //     SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)i, data->spriteBuffer)->texture, NULL, &card_pos);
+    // }
+
+   
+
+   if (data->cards[data->roundIndex].rank == 1 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 17;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 1 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 18;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 1 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 19;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 1 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 20;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 2 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 21;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 2 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 22;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 2 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 23;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 2 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 24;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 3 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 25;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 3 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 26;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 3 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 27;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 3 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 28;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 4 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 29;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 4 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 30;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 4 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 31;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 4 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 32;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 5 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 33;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 5 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 34;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 5 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 35;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 5 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 36;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 6 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 37;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 6 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 38;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 6 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 39;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 6 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 40;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 7 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 41;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 7 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 42;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 7 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 43;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 7 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 44;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 8 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 45;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 8 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 46;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 8 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 47;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 8 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 48;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 9 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 49;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 9 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 50;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 9 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 51;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 9 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 52;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 10 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 53;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 10 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 54;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 10 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 55;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 10 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 56;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 11 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 57;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 11 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 58;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 11 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 59;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 11 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 60;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 12 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 61;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 12 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 62;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 12 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 63;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 12 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 64;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+   if (data->cards[data->roundIndex].rank == 13 && data->cards[data->roundIndex].suit == 1)
+   {
+       data->drawTheCorrectCardOnScreen = 65;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 13 && data->cards[data->roundIndex].suit == 2)
+   {
+       data->drawTheCorrectCardOnScreen = 66;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 13 && data->cards[data->roundIndex].suit == 3)
+   {
+       data->drawTheCorrectCardOnScreen = 67;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+   if (data->cards[data->roundIndex].rank == 13 && data->cards[data->roundIndex].suit == 4)
+   {
+       data->drawTheCorrectCardOnScreen = 68;
+        std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].rank;
+       std::cout << "\n";
+       std::cout << ">The cards ranks was"; std::cout << data->cards[data->roundIndex].suit;
+       std::cout << "\n";
+   }
+
+
+   data->drawThePreviousCardOnScreen = data->drawTheCorrectCardOnScreen;
+
+
+
+   
+    SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::layoutTest), data->spriteBuffer)->texture, NULL, &card_pos4);
+    SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->drawTheCorrectCardOnScreen + 1), data->spriteBuffer)->texture, NULL, &card_pos);
+   // if (data->roundIndex > 0)
+   // {
+   //    SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->drawTheCorrectCardOnScreen + 1), data->spriteBuffer)->texture, NULL, &card_pos3);
+   
+   //    // Jag måste kolla var någonstans den är i Arrayen
+   // }
+    SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->higherOrLower), data->spriteBuffer)->texture, NULL, &card_pos2);
+
+    
+
+     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_spade, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+
+     //SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_heart, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+     //SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+     //SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_spade, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+     //SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_club, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos2);
 
 
     // // test draw higherButton
