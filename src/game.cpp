@@ -37,7 +37,12 @@ extern "C" {
   
   void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
     SetUpBoilerplate(data, window, renderer);
-    
+  
+  data->equalCardBonus = 1;
+  data->luckyTokenAmount = 1;
+  data->quotaOfTokensRequiredToWin = 200;
+  data->scripAmount = 1000;  
+  data->scripAmountBetted = 25;
   data->roundIndex = 0;
   data->drawTheCorrectCardOnScreen = 0;
   data->drawThePreviousCardOnScreen = 0;
@@ -48,6 +53,12 @@ extern "C" {
   data->cards[i].suit = i % 4 + 1;
   data->cards[i].rank = i % 13 + 1; 
   data->cards[i].has_been_played = false;
+  data->cards[i].isAce = false;
+
+  if (data->cards[i].rank == 1)
+  {
+      data->cards[i].isAce = true;
+  }
 
   // card[i].suit = i % 4 + 1; // 4 suits
   // card[i].rank = i % 13 + 1; // 13 values
@@ -107,13 +118,26 @@ extern "C" {
      return true;
   }
 
+  void ShuffleDeck(GameData* data){
+    // To obtain a time-based seed
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();;
+
+    int n = sizeof(data->cards) / sizeof(data->cards[0]);
+
+    // Shuffling our array
+    shuffle(data->cards, data->cards + n,
+            default_random_engine(seed));
+  }
+
   void Update(GameData* data, float dt){
     EditorData* editorData = &data->editor_data;
 
-    // Loop for player's choice, simply compare it with the array, no need to loop array while player makes choice(?)
+    
 
-        
-
+    if (data->roundIndex < 51)
+    {
+        if (data->scripAmount > 0 || data->luckyTokenAmount > data->quotaOfTokensRequiredToWin)
+        {
          int currentlyShownCardRank = data->cards[data->roundIndex].rank;
          int pickedCardRank = data->cards[data->roundIndex + 1].rank; // will crash if deck does not contain any cards!
 
@@ -123,39 +147,107 @@ extern "C" {
          bool pickedCardRankIsHigher = pickedCardRank > currentlyShownCardRank;
          bool pickedCardRankIsLower = pickedCardRank < currentlyShownCardRank;
 
+         if (playerPressedUp == true && playerPressedDown == true)
+         {
+             playerPressedUp = true;
+             playerPressedDown = false;
+         }
 
          if(playerPressedUp == true || playerPressedDown == true)
          {
-            if (playerPressedUp == true && pickedCardRankIsHigher == true && pickedCardRank != currentlyShownCardRank)
+            if (playerPressedUp == true && (pickedCardRankIsHigher == true || data->cards[data->roundIndex + 1].isAce == true) && pickedCardRank != currentlyShownCardRank)
             {
-                // increase the score here
+                // Player guessed right!
+
+                data->luckyTokenAmount++;
+                data->scripAmount += (data->scripAmountBetted * data->equalCardBonus);
+                data->equalCardBonus = 1;
 
                 data->higherOrLower = 70;
             }
-            if (playerPressedUp == true && pickedCardRankIsHigher == false && pickedCardRank != currentlyShownCardRank)
+            if (playerPressedUp == true && (pickedCardRankIsHigher == false && data->cards[data->roundIndex + 1].isAce == false) && pickedCardRank != currentlyShownCardRank)
             {
-                // increase the score here
+                // Player guessed wrong!
+
+                data->scripAmount -= data->scripAmountBetted;
+
+                data->equalCardBonus = 1;
 
                 data->higherOrLower = 72;
             }
-            else if (playerPressedDown == true && pickedCardRankIsLower == true && pickedCardRank != currentlyShownCardRank)
+            else if (playerPressedDown == true && (pickedCardRankIsLower == true || data->cards[data->roundIndex].isAce == true) && pickedCardRank != currentlyShownCardRank)
             {
-                // increase the score here
+                // Player guessed right!
+
+                data->luckyTokenAmount++;
+                data->scripAmount += (data->scripAmountBetted * data->equalCardBonus);
+                data->equalCardBonus = 1;
 
                 data->higherOrLower = 71;
             }
-            else if (playerPressedDown == true && pickedCardRankIsLower == false && pickedCardRank != currentlyShownCardRank)
+            else if (playerPressedDown == true && (pickedCardRankIsLower == false && data->cards[data->roundIndex].isAce == false) && pickedCardRank != currentlyShownCardRank)
             {
-                // increase the score here
+                // Player guessed wrong!
+
+                data->scripAmount -= data->scripAmountBetted;
+
+                data->equalCardBonus = 1;
 
                 data->higherOrLower = 72;
             }
             else if (pickedCardRank == currentlyShownCardRank)
             {
-                data->higherOrLower = 73;
-            }
-            data->roundIndex++;
-         }
+                    data->equalCardBonus = 2; // Player gets a bonus on their next guess if they get 2 cards of the same rank in a row.
+
+                    data->higherOrLower = 73;
+                }
+                data->roundIndex++;
+            }  
+        }
+    }
+
+   
+
+         
+        
+
+       
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
          // if(KeyPressed(&data->input, SDL_SCANCODE_UP) && pickedCardRank > currentlyShownCardRank)
          // {
@@ -322,7 +414,9 @@ extern "C" {
     SDL_FRect card_pos3 {16, 256, 200, 300};
     SDL_FRect card_pos {1125, 75, 300, 400};
     SDL_FRect card_pos2 {600, 600, 600, 600};
-    SDL_FRect card_pos4 {1, 1, 1920, 1080};
+    SDL_FRect card_pos4 {0, 0, 1920, 1080};
+    SDL_FRect card_pos5 {0, 0, 1920, 1080};
+    SDL_FRect card_pos6 {0, 0, 1920, 1080};
     
 
 
@@ -892,6 +986,15 @@ extern "C" {
    //    // Jag måste kolla var någonstans den är i Arrayen
    // }
     SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->higherOrLower), data->spriteBuffer)->texture, NULL, &card_pos2);
+    if (data->scripAmount == 0 || data->roundIndex == 51)
+    {
+       SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::GameOverScreen), data->spriteBuffer)->texture, NULL, &card_pos5); 
+    }
+    if (data->luckyTokenAmount == data->quotaOfTokensRequiredToWin)
+    {
+       SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::VictoryScreen), data->spriteBuffer)->texture, NULL, &card_pos6); 
+    }
+    
 
     
 

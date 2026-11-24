@@ -39,4 +39,9 @@ struct GameData {
   int drawTheCorrectCardOnScreen;
   int drawThePreviousCardOnScreen;
   int higherOrLower;
+  int scripAmount;
+  int scripAmountBetted;
+  int luckyTokenAmount;
+  int quotaOfTokensRequiredToWin;
+  int equalCardBonus;
  };

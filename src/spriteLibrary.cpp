@@ -97,7 +97,9 @@ static const SpriteDataEntry all_sprite_data[] = {
   {SPRITE_ID::Lower, "assets/sprites/lower.png"},
   {SPRITE_ID::PlayerGuessedWrong, "assets/sprites/wrong.png"},
   {SPRITE_ID::BothCardsWereEqual, "assets/sprites/equal.png"},
-  {SPRITE_ID::layoutTest, "assets/sprites/layoutTest.png"}
+  {SPRITE_ID::layoutTest, "assets/sprites/layoutTest.png"},
+  {SPRITE_ID::GameOverScreen, "assets/sprites/gameOverScreen.png"},
+  {SPRITE_ID::VictoryScreen, "assets/sprites/victoryScreen.png"}
   };
 
 Sprite* GetSprite(SPRITE_ID sprite_id, Sprite* spriteBuffer){

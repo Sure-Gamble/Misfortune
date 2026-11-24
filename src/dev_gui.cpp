@@ -86,6 +86,13 @@ void DEV::Draw(GameData* data, SDL_Renderer* renderer){
   Input* input = &data->input;
   ImGui::Text("MX:%1f MY:%1f", input->mouse_x, input->mouse_y);
   
+  ImGui::Text("scripAmount: %d", data->scripAmount);
+  ImGui::Text("scripAmountBetted: %d", data->scripAmountBetted);
+  ImGui::Text("luckyTokenAmount: %d", data->luckyTokenAmount);
+  ImGui::Text("quotaOfTokensRequiredToWin: %d", data->quotaOfTokensRequiredToWin);
+  ImGui::Text("equalCardBonus: %d", data->equalCardBonus);
+  ImGui::Text("roundIndex: %d", data->roundIndex);
+
   ImGui::End();
 
 
