@@ -9,12 +9,17 @@ struct GameData;
 enum class ButtonType {
   NONE,
   START_GAME,
-  QUIT
+  QUIT,
+  VALUE_UP,
+  VALUE_DOWN,
+  CONFIRM,
+  RESET,
+  VALUE_BUTTON,
 };
 
 struct Button {
   ButtonType type;
-  SDL_FRect rect;
+  SDL_FRect rect; // this one holds x, y, w & h
   Sprite* sprite;
   bool is_active;
   bool is_dynamic;
