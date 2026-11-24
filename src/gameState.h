@@ -6,16 +6,6 @@
 #include "imgui/imgui_internal.h"
 #include "input.h"
 #include "spriteLibrary.h"
-//#include "panel.h"
-struct MainPanel;
-
-struct ScreenInfo{
-  int monitor_width = 0;
-  int monitor_height = 0;
-  SDL_FRect viewport{};
-  float scale = 1.0f;
-
-};
 #include "card.h"
 
 struct EditorData{
@@ -37,8 +27,6 @@ struct GameData {
   Memory::Arena* arena_input;
   Memory::Arena* arena_scratch;
   Camera camera;
-  ScreenInfo screen;
-  MainPanel* mainPanel;
   ImGuiContext* imGui_context;
   const float* dt;  
   float* dt_scaler;

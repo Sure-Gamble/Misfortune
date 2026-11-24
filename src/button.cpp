@@ -29,11 +29,6 @@ void SetupButton(Button* button, ButtonType type, Sprite* spriteBuffer, SDL_FRec
   case ButtonType::QUIT:
     button->sprite = GetSprite(SPRITE_ID::Fallback, spriteBuffer);
     break;
-  case ButtonType::VALUE_UP:
-  case ButtonType::VALUE_DOWN:
-  case ButtonType::CONFIRM:
-  case ButtonType::RESET:
-  case ButtonType::VALUE_BUTTON:  
   default:
     button->sprite = GetSprite(SPRITE_ID::Fallback, spriteBuffer);
   break;
