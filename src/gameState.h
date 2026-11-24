@@ -7,6 +7,7 @@
 #include "input.h"
 #include "spriteLibrary.h"
 #include "card.h"
+#include "button.h"
 
 struct EditorData{
   float* fps_buffer;

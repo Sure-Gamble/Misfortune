@@ -1,8 +1,9 @@
 #include "game.h"
 #include "SDL3/SDL_blendmode.h"
 #include "SDL3/SDL_events.h"
+#include "SDL3/SDL_mouse.h"
+#include "SDL3/SDL_oldnames.h"
 #include "SDL3/SDL_render.h"
-#include "SDL3/SDL_scancode.h"
 #include "SDL3/SDL_video.h"
 #include "audioSystem.h"
 #include "button.h"
@@ -10,6 +11,7 @@
 #include "fontLibrary.h"
 #include "gameState.h"
 #include "imgui/imgui.h"
+#include "imgui/imgui_internal.h"
 #include "input.h"
 #include "spriteLibrary.h"
 #include "card.h"
@@ -150,18 +152,6 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
     EditorData* editorData = &data->editor_data;
 
     
-    // mouse position
-float mx, my;
-SDL_MouseButtonFlags flags = SDL_GetMouseState(&mx, &my);
-
-bool mouseDown          = (flags & SDL_BUTTON_LMASK) !=0;
-bool mousePressedNow    = mouseDown && !data->prevMouseDown;
-bool mouseReleasedNow   = !mouseDown && data->prevMouseDown;
-data->prevMouseDown     = mouseDown;
-
-for(int i = 0; i<data->buttonCount; i++){
-    UpdateButton(&data->buttons[i], data, mx, my, mouseDown, mousePressedNow, mouseReleasedNow);
-}
 
 
 
@@ -174,6 +164,29 @@ for(int i = 0; i<data->buttonCount; i++){
 
          bool playerPressedUp = KeyPressed(&data->input, SDL_SCANCODE_UP);
          bool playerPressedDown = KeyPressed(&data->input, SDL_SCANCODE_DOWN);
+
+        // bool playerPressedUp = data->buttons[0].is_active;
+        // bool playerPressedDown = MouseReleased(&data->input, SDL_MOUSEBUTTONDOWN);
+
+
+
+
+         // mouse position
+         float mx, my;
+         SDL_MouseButtonFlags flags = SDL_GetMouseState(&mx, &my);
+
+         bool mouseDown          = (flags & SDL_BUTTON_LMASK) !=0;
+         bool mousePressedNow    = mouseDown && !data->prevMouseDown;
+         bool mouseReleasedNow   = !mouseDown && data->prevMouseDown;
+         data->prevMouseDown     = mouseDown;
+
+         for(int i = 0; i<data->buttonCount; i++){
+            UpdateButton(&data->buttons[i], data, mx, my, mouseDown, mousePressedNow, mouseReleasedNow);
+        }
+
+
+
+
 
          bool pickedCardRankIsHigher = pickedCardRank > currentlyShownCardRank;
          bool pickedCardRankIsLower = pickedCardRank < currentlyShownCardRank;
@@ -444,7 +457,7 @@ for(int i = 0; i<data->buttonCount; i++){
     
     SDL_FRect card_pos3 {16, 256, 200, 300};
     SDL_FRect card_pos {1125, 75, 300, 400};
-    SDL_FRect card_pos2 {600, 600, 600, 600};
+    SDL_FRect card_pos2 {600, 0, 500, 500};
     SDL_FRect card_pos4 {0, 0, 1920, 1080};
     SDL_FRect card_pos5 {0, 0, 1920, 1080};
     SDL_FRect card_pos6 {0, 0, 1920, 1080};
