@@ -93,7 +93,8 @@ enum class SPRITE_ID{
   Lower,
   PlayerGuessedWrong,
   BothCardsWereEqual,
-  layoutTest
+  layoutTest,
+  buttonTest01
 };
 
 const int NOT_SET = -1;

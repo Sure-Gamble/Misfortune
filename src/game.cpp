@@ -1,6 +1,7 @@
 #include "game.h"
 #include "SDL3/SDL_blendmode.h"
 #include "SDL3/SDL_events.h"
+#include "SDL3/SDL_mouse.h"
 #include "SDL3/SDL_render.h"
 #include "SDL3/SDL_scancode.h"
 #include "SDL3/SDL_video.h"
@@ -34,9 +35,23 @@ extern "C" {
     SDL_SetTextureBlendMode(blackfade, SDL_BLENDMODE_BLEND);
     // PlaySong(SONG_ID::THEME); // just muted for my sanity
   }
+
+  void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
+    if(data->buttonCount >= GameData::MAX_BUTTONS) return;   // skydd mot att fylla arrayen
+    SetupButton(&data->buttons[data->buttonCount], type, data->spriteBuffer, rect, Alignment::Centered, nullptr, "");
+    data->buttonCount++;                                      // ökar automatiskt
+}
   
   void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
     SetUpBoilerplate(data, window, renderer);
+
+//Initialize Buttons
+    SetupButton(&data->buttons[0], ButtonType::HIGHER, data->spriteBuffer, SDL_FRect{300, 600, 150, 60}, Alignment::Centered, nullptr, "");
+    SetupButton(&data->buttons[1], ButtonType::LOWER, data->spriteBuffer, SDL_FRect{500, 600, 150, 60}, Alignment::Centered, nullptr, "");
+    data->buttonCount = 2;
+    data->prevMouseDown = false;    //start value
+    data->higherOrLower = 0;        //start value
+
     
   data->roundIndex = 0;
   data->drawTheCorrectCardOnScreen = 0;
@@ -49,21 +64,8 @@ extern "C" {
   data->cards[i].rank = i % 13 + 1; 
   data->cards[i].has_been_played = false;
 
-  // card[i].suit = i % 4 + 1; // 4 suits
-  // card[i].rank = i % 13 + 1; // 13 values
-  // card[i].has_been_played = false;
 
-  // std::cout << "New Card";
-  // std::cout << "\n";
-  // std::cout << card[i].suit;
-  // std::cout << "\n";
-  // std::cout << "\n";
-  // std::cout << card[i].rank;
-  // std::cout << "\n";
-  // std::cout << "\n";
-  // std::cout << card[i].has_been_played;
-  // std::cout << "\n";
-  // std::cout << "\n";
+
 };
 
 
@@ -81,17 +83,7 @@ extern "C" {
         std::cout << data->cards[i].rank << " ";
     std::cout << std::endl;
     std::cout << "\n";
-   // std::cout << data->cards[51].rank;
 
-
-    
-
-// std::cout << "hello!";
-// std::cout << data->cards[3].suit;
-// std::cout << "\n";
-// std::cout << data->cards[3].rank;
-// std::cout << "\n";
-// std::cout << data->cards[3].has_been_played;
   }
    
    bool HandleEvents(GameData *data, SDL_Event event){
@@ -157,145 +149,27 @@ extern "C" {
             data->roundIndex++;
          }
 
-         // if(KeyPressed(&data->input, SDL_SCANCODE_UP) && pickedCardRank > currentlyShownCardRank)
-         // {
+//mouse position
+float mx, my;
+SDL_MouseButtonFlags flags = SDL_GetMouseState(&mx, &my);
 
-         //     // increase the score here
+bool mouseDown          = (flags & SDL_BUTTON_LMASK) !=0;
+bool mousePressedNow    = mouseDown && !data->prevMouseDown;
+bool mouseReleasedNow   = !mouseDown && data->prevMouseDown;
+data->prevMouseDown     = mouseDown;
 
-         //    data->roundIndex++;
-
-         //     std::cout << "\n";
-         //     std::cout << "The picked card was higher than the shown one! You win!";
-         //     std::cout << "\n";
-         //     std::cout << "test";
-
-            
-         // }
-
-         // if (KeyPressed(&data->input, SDL_SCANCODE_DOWN) && pickedCardRank < currentlyShownCardRank)
-         // {
-
-         //     data->roundIndex++;
-
-         //     // game over here(?)
-
-         //     std::cout << "\n";
-         //     std::cout << "The picked card was lower than the shown one! You lose!";
-         //     std::cout << "\n";
-
-             
-         // }
+for(int i = 0; i<data->buttonCount; i++){
+    UpdateButton(&data->buttons[i], data, mx, my, mouseDown, mousePressedNow, mouseReleasedNow);
+}
 
 
 
-    // fetch pointers
-    
-
-//     int i = 0;
-//     while(i < data->DECK_SIZE)
-//     {
-//       int currentlyShownCardRank = data->cards[i].rank;
-//       int pickedCardRank = data->cards[i + 1].rank; // will crash if deck does not contain any cards!
-
-//       int currentlyShownCardSuit = data->cards[i].suit;
-//       int pickedCardSuit = data->cards[i + 1].suit;
-
-//       if (data->cards[i].has_been_played == false)
-//       {
-
-//        // std::cout << "\n";
-//        // std::cout << currentlyShownCardRank;
-//        // std::cout << "\n";
-//        // std::cout << pickedCardRank;
 
 
 
-//         //  bool higherOrLower = SDL_WaitEvent(KeyPressed(&data->input, SDL_SCANCODE_UP));
-
-
-
-//         if(KeyPressed(&data->input, SDL_SCANCODE_UP) && pickedCardRank > currentlyShownCardRank)
-//         {
-
-//             // increase the score here
-
-//             std::cout << "\n";
-//             std::cout << "The picked card was higher than the shown one! You win!";
-//             std::cout << "\n";
-//             std::cout << "test";
-
-//             data->cards[i].has_been_played = true;
-//             i++;
-//         }
-
-//         if (KeyPressed(&data->input, SDL_SCANCODE_DOWN) && pickedCardRank <= currentlyShownCardRank)
-//         {
-
-//             // game over here(?)
-
-//             std::cout << "\n";
-//             std::cout << "The picked card was lower than the shown one! You lose!";
-//             std::cout << "\n";
-
-//             data->cards[i].has_been_played = true;        
-
-
-//         }
-//     }  
-// }
-
-
-
-//     for (int i = 0; i < data->DECK_SIZE; i++)
-//     {
-//       int currentlyShownCardRank = data->cards[i].rank;
-//       int pickedCardRank = data->cards[i + 1].rank; // will crash if deck does not contain any cards!
-
-//       int currentlyShownCardSuit = data->cards[i].suit;
-//       int pickedCardSuit = data->cards[i + 1].suit;
-
-//       if (data->cards[i].has_been_played == false)
-//       {
-
-//        // std::cout << "\n";
-//        // std::cout << currentlyShownCardRank;
-//        // std::cout << "\n";
-//        // std::cout << pickedCardRank;
-
-
-
-//        //  bool higherOrLower = SDL_WaitEvent(KeyPressed(&data->input, SDL_SCANCODE_UP));
-
-
-
-//         if(KeyPressed(&data->input, SDL_SCANCODE_UP) && pickedCardRank > currentlyShownCardRank)
-//         {
-
-//             // increase the score here
-
-//             std::cout << "\n";
-//             std::cout << "The picked card was higher than the shown one! You win!";
-//             std::cout << "\n";
-//             std::cout << "test";
-
-            
-//         }
-
-//         if(KeyPressed(&data->input, SDL_SCANCODE_DOWN) && pickedCardRank < currentlyShownCardRank)
-//         {
-
-//             // game over here(?)
-
-//             std::cout << "\n";
-//             std::cout << "The picked card was lower than the shown one! You lose!";
-//             std::cout << "\n";
 
             
 
-
-//         }
-//     }
-// }
 }    
 
    void Draw(GameData* data, SDL_Renderer* renderer){
@@ -303,96 +177,15 @@ extern "C" {
      SDL_SetRenderDrawColor(renderer, 155, 155, 155, 255);
      SDL_RenderClear(renderer);
 
-    // // test draw card
-    // Card card;
-    // card.rank = 1;
-    // card.suit = 1;
-    // card.has_been_played = false;
 
-    // // int card_x = 200;
-    // // int card_y = 200;
-    // SDL_FRect card_pos {200, 200, 200, 200};
-
-    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Card, data->spriteBuffer)->texture, NULL, &card_pos);
-
-// test draw the deck of cards
-// int deck_x = data->cards->has_been_played = false;
-// int deck_y = data->cards->has_been_played = false;
-    
+  
+ 
     SDL_FRect card_pos3 {16, 256, 200, 300};
     SDL_FRect card_pos {1125, 75, 300, 400};
     SDL_FRect card_pos2 {600, 600, 600, 600};
     SDL_FRect card_pos4 {1, 1, 1920, 1080};
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // for (int i = 0; i < data->DECK_SIZE; ++i)
-    // {
-    //   if (data->cards[i].has_been_played == false)
-    //   {
-     
-    //    if (data->cards[i].rank == 1 && data->cards[i].suit == 1)
-    //    {
-        
-    //     // std::cout << data->cards[i].rank << "\n";
-    //     // std::cout << data->cards[i].suit << "\n";
-
-    //     data->cards[i].has_been_played = true;
-
-    //     std::cout << "The ace_of_diamond was in postion:";
-    //     std::cout << i;
-
-    //    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_club, data->spriteBuffer)->texture, NULL, &card_pos);
-       
-    //    }
-        
-    //   }
-    // }
-
-
-
-
-
-    // card_pos.w = 64;
-    // card_pos.h = 1.5 * card_pos.w;
-    // for (int i = (int)SPRITE_ID::Fallback; i <= (int)SPRITE_ID::King_of_spade; ++i) {
-    //     card_pos.x = (i % 12) * card_pos.w;
-    //     card_pos.y = (i / 12) * card_pos.h;
-    //     SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)i, data->spriteBuffer)->texture, NULL, &card_pos);
-    // }
 
    
 
@@ -885,42 +678,25 @@ extern "C" {
    
     SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::layoutTest), data->spriteBuffer)->texture, NULL, &card_pos4);
     SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->drawTheCorrectCardOnScreen + 1), data->spriteBuffer)->texture, NULL, &card_pos);
-   // if (data->roundIndex > 0)
-   // {
-   //    SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->drawTheCorrectCardOnScreen + 1), data->spriteBuffer)->texture, NULL, &card_pos3);
-   
-   //    // Jag måste kolla var någonstans den är i Arrayen
-   // }
+ 
     SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->higherOrLower), data->spriteBuffer)->texture, NULL, &card_pos2);
 
-    
+   
+//Right Button pic at the right time
+    for(int i = 0; i < data->buttonCount; i++){
+        Button* b = &data->buttons[i];
+        Sprite* s = b->sprite;
 
-     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
-     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
-     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
-     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
-     // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_spade, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
+        int cols = (s->sprite_count_x < 1) ? 1 : s->sprite_count_x; //I think this is for how many sprites
 
-     //SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_heart, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
-     //SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
-     //SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_spade, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
-     //SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_club, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
-    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos2);
+        float frameW = s->width / (float)cols;      //width of one column/button
+        int frame = (cols > 1) ? (int)b->state : 0; //Wich "frame" are currently showing.
+
+        SDL_FRect src { frameW * (int)b->state, 0, frameW, (float)s->height };
+        SDL_RenderTexture(renderer, s->texture, &src, &b->rect);        //Where and how big button
+    }
 
 
-    // // test draw higherButton
-    // int higherButton_x = 400;
-    // int higherButton_y = 500;
-    // SDL_FRect higherButton_pos {400, 500, 400, 500};
-
-    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::HigherButton, data->spriteBuffer)->texture, NULL, &higherButton_pos);
-        
-    // // test draw lowerButton
-    // int lowerButton_x = 400;
-    // int lowerButton_y = 300;
-    // SDL_FRect lowerButton_pos {400, 300, 400, 300};
-
-    // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::LowerButton, data->spriteBuffer)->texture, NULL, &lowerButton_pos);
 
     DEV::Draw(data, renderer);
     SDL_RenderPresent(renderer);

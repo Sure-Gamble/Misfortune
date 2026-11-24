@@ -1,6 +1,7 @@
 #pragma once
 #include "arena.h"
 #include "audioSystem.h"
+#include "button.h"
 #include "camera.h"
 #include "fontLibrary.h"
 #include "imgui/imgui_internal.h"
@@ -39,4 +40,10 @@ struct GameData {
   int drawTheCorrectCardOnScreen;
   int drawThePreviousCardOnScreen;
   int higherOrLower;
+
+//knappstuff
+  bool prevMouseDown = false;         // var musknappen nedtryckt förra framen?
+  static const int MAX_BUTTONS = 16;  //Max knappar
+  Button buttons[MAX_BUTTONS];        //knapparna
+  int buttonCount = 0;                //Hur många knappar används/ritas. Sätts sen i Initialize.
  };
