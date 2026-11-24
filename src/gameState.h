@@ -44,4 +44,10 @@ struct GameData {
   int luckyTokenAmount;
   int quotaOfTokensRequiredToWin;
   int equalCardBonus;
+
+  // knappstuff
+  bool prevMouseDown = false;         // var musknappen nedtryckt förra framen?
+  static const int MAX_BUTTONS = 16;  //Max knappar
+  Button buttons[MAX_BUTTONS];        //knapparna
+  int buttonCount = 0;                //Hur många knappar används/ritas. Sätts sen i Initialize.
  };

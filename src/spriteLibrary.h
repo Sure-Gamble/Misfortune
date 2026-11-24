@@ -95,7 +95,9 @@ enum class SPRITE_ID{
   BothCardsWereEqual,
   layoutTest,
   GameOverScreen,
-  VictoryScreen
+  VictoryScreen,
+
+  buttonTest01
 };
 
 const int NOT_SET = -1;

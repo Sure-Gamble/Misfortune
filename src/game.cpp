@@ -38,6 +38,17 @@ extern "C" {
   void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer){
     SetUpBoilerplate(data, window, renderer);
   
+
+
+    // Initialize Buttons
+    SetupButton(&data->buttons[0], ButtonType::HIGHER, data->spriteBuffer, SDL_FRect{300, 600, 150, 60}, Alignment::Centered, nullptr, "");
+    SetupButton(&data->buttons[1], ButtonType::LOWER, data->spriteBuffer, SDL_FRect{500, 600, 150, 60}, Alignment::Centered, nullptr, "");
+    data->buttonCount = 2;
+    data->prevMouseDown = false;    //start value
+    data->higherOrLower = 0;        //start value
+
+
+
   data->equalCardBonus = 1;
   data->luckyTokenAmount = 1;
   data->quotaOfTokensRequiredToWin = 200;
@@ -118,6 +129,12 @@ extern "C" {
      return true;
   }
 
+void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
+    if(data->buttonCount >= GameData::MAX_BUTTONS) return;   // skydd mot att fylla arrayen
+    SetupButton(&data->buttons[data->buttonCount], type, data->spriteBuffer, rect, Alignment::Centered, nullptr, "");
+    data->buttonCount++;                                      // ökar automatiskt
+}
+
   void ShuffleDeck(GameData* data){
     // To obtain a time-based seed
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();;
@@ -133,6 +150,20 @@ extern "C" {
     EditorData* editorData = &data->editor_data;
 
     
+    // mouse position
+float mx, my;
+SDL_MouseButtonFlags flags = SDL_GetMouseState(&mx, &my);
+
+bool mouseDown          = (flags & SDL_BUTTON_LMASK) !=0;
+bool mousePressedNow    = mouseDown && !data->prevMouseDown;
+bool mouseReleasedNow   = !mouseDown && data->prevMouseDown;
+data->prevMouseDown     = mouseDown;
+
+for(int i = 0; i<data->buttonCount; i++){
+    UpdateButton(&data->buttons[i], data, mx, my, mouseDown, mousePressedNow, mouseReleasedNow);
+}
+
+
 
     if (data->roundIndex < 51)
     {
@@ -421,8 +452,19 @@ extern "C" {
 
 
 
+// Right Button pic at the right time
+    for(int i = 0; i < data->buttonCount; i++){
+        Button* b = &data->buttons[i];
+        Sprite* s = b->sprite;
 
+int cols = (s->sprite_count_x < 1) ? 1 : s->sprite_count_x; //I think this is for how many sprites
 
+        float frameW = s->width / (float)cols;      //width of one column/button
+        int frame = (cols > 1) ? (int)b->state : 0; //Wich "frame" are currently showing.
+
+ SDL_FRect src { frameW * (int)b->state, 0, frameW, (float)s->height };
+        SDL_RenderTexture(renderer, s->texture, &src, &b->rect);        //Where and how big button
+    }
 
 
 

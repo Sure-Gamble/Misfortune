@@ -99,7 +99,10 @@ static const SpriteDataEntry all_sprite_data[] = {
   {SPRITE_ID::BothCardsWereEqual, "assets/sprites/equal.png"},
   {SPRITE_ID::layoutTest, "assets/sprites/layoutTest.png"},
   {SPRITE_ID::GameOverScreen, "assets/sprites/gameOverScreen.png"},
-  {SPRITE_ID::VictoryScreen, "assets/sprites/victoryScreen.png"}
+  {SPRITE_ID::VictoryScreen, "assets/sprites/victoryScreen.png"},
+
+  {SPRITE_ID::layoutTest, "assets/sprites/layoutTest.png"},
+  {SPRITE_ID::buttonTest01, "assets/sprites/buttonTest01.png", 0, 0, 3, 1}  //x, y, squares-x, squares-y
   };
 
 Sprite* GetSprite(SPRITE_ID sprite_id, Sprite* spriteBuffer){
