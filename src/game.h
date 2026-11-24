@@ -2,6 +2,8 @@
 
 #include "SDL3/SDL_render.h"
 #include "gameState.h"
+#include "board.h"
+#include "character.h"
 
 extern "C" {
    __declspec(dllexport) void Initialize(GameData* data, SDL_Window* window, SDL_Renderer* renderer);
