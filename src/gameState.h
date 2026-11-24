@@ -7,6 +7,7 @@
 #include "input.h"
 #include "spriteLibrary.h"
 #include "card.h"
+#include "button.h"
 
 struct EditorData{
   float* fps_buffer;
@@ -35,4 +36,19 @@ struct GameData {
 
   static const int DECK_SIZE = 52;
   Card cards[DECK_SIZE];
+  int roundIndex;
+  int drawTheCorrectCardOnScreen;
+  int drawThePreviousCardOnScreen;
+  int higherOrLower;
+  int scripAmount;
+  int scripAmountBetted;
+  int luckyTokenAmount;
+  int quotaOfTokensRequiredToWin;
+  int equalCardBonus;
+
+  // knappstuff
+  bool prevMouseDown = false;         // var musknappen nedtryckt förra framen?
+  static const int MAX_BUTTONS = 16;  //Max knappar
+  Button buttons[MAX_BUTTONS];        //knapparna
+  int buttonCount = 0;                //Hur många knappar används/ritas. Sätts sen i Initialize.
  };
