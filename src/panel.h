@@ -18,7 +18,7 @@ struct NormalizedRect{
 
 struct PanelLayout{
 	NormalizedRect bounds;
-	float padding;
+	float padding = 0.0f;
 };
 
 enum class PANEL_TYPE{
@@ -39,8 +39,19 @@ struct Panel{
 
 
 struct SidePanel : Panel {
-	ValueBox quota_display;
+	ValueBox quota_int_1;
+	ValueBox quota_int_2;
+	ValueBox quota_int_3;
+	ValueBox quota_int_4;
+	Button pay_off_1;
+	Button pay_off_2;
+	Button pay_off_3;
+	Button pay_off_4;
+	Button pay_off_5;
 	Button coin_slot_button;
+	ValueBox conversion_ratio;
+	ValueBox token_convert;
+	ValueBox scrip_convert;
 	Button lucky_token_up;
 	Button lucky_token_down;
 	Button scrip_up;
@@ -52,12 +63,11 @@ struct SidePanel : Panel {
 	
 struct GamePanel : Panel {
 	Sprite* round_counter_texture;
-	Sprite* token_texture;
-	Sprite* scrip_texture;
-	ValueBox token_text_box;
-	ValueBox scrip_text_box;
+	SDL_FRect round_counter_icon_rect;
 	Sprite* covererd_card;
+	SDL_FRect covererd_card_icon_rect;
 	Sprite* open_card;
+	SDL_FRect open_card_icon_rect;
 	Button higher_button;
 	Button lower_button;
     PANEL_TYPE type = PANEL_TYPE::GAME_PANEL;
@@ -65,14 +75,24 @@ struct GamePanel : Panel {
 };
 
 struct BetPanel : Panel {
-	Button bet_scrip_button;
-	Button reset_bet_button;
+	Sprite* token_texture;
+	SDL_FRect token_icon_rect;
+	ValueBox token_value;
+	Sprite* scrip_texture;
+	SDL_FRect scrip_icon_rect;
+	ValueBox scrip_value;
+	Sprite* prompt_bet_texture;
+	SDL_FRect prompt_bet_rect;
 	Button value_1_button;
 	Button value_2_button;
 	Button value_3_button;
 	Button value_4_button;
-	Sprite* total_bet_texture;
-	ValueBox total_bet_display;
+	Button bet_scrip_button;
+	Button reset_bet_button;
+	ValueBox bet_int_1;
+	ValueBox bet_int_2;
+	ValueBox bet_int_3;
+	ValueBox bet_int_4;
     PANEL_TYPE type = PANEL_TYPE::BET_PANEL;
 
 };

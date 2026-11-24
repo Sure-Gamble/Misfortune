@@ -12,7 +12,7 @@ void ValueBox_INIT(ValueBox* valuebox){
 void ValueBox_Display(ValueBox* valuebox, SDL_Renderer* renderer, FontAtlas* font, Camera* camera){
     char string[64];
     itoa ( valuebox->value, string, 10 );
-    RenderText(font, string, renderer, camera, valuebox->box.x, valuebox->box.y, Alignment::Left);
+    RenderText(font, string, renderer, camera, valuebox->box.x, valuebox->box.y, Alignment::Centered);
 }
 
 void ValueBox_Destroy(ValueBox* valuebox){

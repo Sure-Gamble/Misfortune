@@ -95,16 +95,11 @@ extern "C" {
     DEV::PreDraw(data->imGui_context);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
-    //ValueBox_Display(&test_VB, renderer, &data->font, &data->camera); // Test 
-    //InitializeLayout (data->mainPanel, renderer, data, &data->font, &data->camera); //Test
-    // test for paneling
     SDL_FRect test = {0.0f, 0.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT};
     SDL_SetRenderDrawColor(renderer, 50, 100, 180, 255);
     SDL_RenderFillRect(renderer, &test);
 
     RenderMainPanel(data->mainPanel, renderer, data, &data->font, &data->camera);
-    RenderPanelMockup(data->mainPanel, renderer);
-
 
     DEV::Draw(data, renderer);
     SDL_RenderPresent(renderer);
