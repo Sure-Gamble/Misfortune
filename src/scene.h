@@ -19,5 +19,5 @@ struct Scene {
     SCENE_TYPE type;
     Sprite* background;
     Button* button;
-    // Text input here
+    // Text input
 };
