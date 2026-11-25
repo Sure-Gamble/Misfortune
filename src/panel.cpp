@@ -244,7 +244,6 @@ void InitializeLayout (MainPanel* main_panel, GameData* data){
     main_panel->sidePanel.is_active = true;
     main_panel->sidePanel.sprite = GetSprite(SPRITE_ID::Ground, data->spriteBuffer);
     main_panel->sidePanel.rect = ToScreenRect(PanelLayouts::SIDE_PANEL);
-    //
     // GAME PANEL BASE
     main_panel->gamePanel.type = PANEL_TYPE::GAME_PANEL;
     main_panel->gamePanel.is_active = true;
