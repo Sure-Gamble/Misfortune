@@ -1,0 +1,182 @@
+[
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_common.dir\\src\\arena.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\arena.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/arena.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_common.dir/src/arena.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_common.dir\\src\\input.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\input.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/input.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_common.dir/src/input.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird.dir\\src\\main.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\main.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/main.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird.dir\\src_external\\imgui\\imgui.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/src_external/imgui/imgui.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird.dir\\src_external\\imgui\\imgui_draw.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_draw.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_draw.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/src_external/imgui/imgui_draw.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird.dir\\src_external\\imgui\\imgui_tables.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_tables.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_tables.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/src_external/imgui/imgui_tables.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird.dir\\src_external\\imgui\\imgui_widgets.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_widgets.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_widgets.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/src_external/imgui/imgui_widgets.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird.dir\\src_external\\imgui\\imgui_impl_sdlrenderer3.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_impl_sdlrenderer3.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_impl_sdlrenderer3.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/src_external/imgui/imgui_impl_sdlrenderer3.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird.dir\\src_external\\imgui\\imgui_impl_sdl3.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_impl_sdl3.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_impl_sdl3.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/src_external/imgui/imgui_impl_sdl3.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\audioSystem.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\audioSystem.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/audioSystem.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/audioSystem.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\button.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\button.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/button.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/button.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\camera.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\camera.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/camera.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/camera.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\card.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\card.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/card.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/card.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\collision.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\collision.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/collision.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/collision.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\command.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\command.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/command.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/command.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\converter.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\converter.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/converter.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/converter.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\dev_gui.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\dev_gui.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/dev_gui.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/dev_gui.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\fontLibrary.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\fontLibrary.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/fontLibrary.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/fontLibrary.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\game.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\game.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/game.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/game.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\image.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\image.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/image.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/image.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\rendering.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\rendering.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/rendering.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/rendering.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\spriteLibrary.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\spriteLibrary.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/spriteLibrary.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/spriteLibrary.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\tilesetLibrary.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\tilesetLibrary.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/tilesetLibrary.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/tilesetLibrary.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src\\wallet.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src\\wallet.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src/wallet.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src/wallet.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src_external\\imgui\\imgui.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src_external/imgui/imgui.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src_external\\imgui\\imgui_draw.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_draw.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_draw.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src_external/imgui/imgui_draw.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src_external\\imgui\\imgui_tables.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_tables.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_tables.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src_external/imgui/imgui_tables.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src_external\\imgui\\imgui_widgets.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_widgets.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_widgets.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src_external/imgui/imgui_widgets.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src_external\\imgui\\imgui_impl_sdlrenderer3.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_impl_sdlrenderer3.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_impl_sdlrenderer3.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src_external/imgui/imgui_impl_sdlrenderer3.cpp.obj"
+},
+{
+  "directory": "C:/LOCAL/GD26/PROJECTS/Misfortune/build",
+  "command": "\"C:\\Program Files\\LLVM\\bin\\clang++.exe\" -Dflappybird_game_EXPORTS -IC:/LOCAL/GD26/PROJECTS/Misfortune/include -IC:/LOCAL/GD26/PROJECTS/Misfortune/src_external -O0 -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -g -Xclang -gcodeview -o CMakeFiles\\flappybird_game.dir\\src_external\\imgui\\imgui_impl_sdl3.cpp.obj -c C:\\LOCAL\\GD26\\PROJECTS\\Misfortune\\src_external\\imgui\\imgui_impl_sdl3.cpp",
+  "file": "C:/LOCAL/GD26/PROJECTS/Misfortune/src_external/imgui/imgui_impl_sdl3.cpp",
+  "output": "C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir/src_external/imgui/imgui_impl_sdl3.cpp.obj"
+}
+]
