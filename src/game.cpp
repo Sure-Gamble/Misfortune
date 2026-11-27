@@ -158,7 +158,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
 
 
 
-    if (data->roundIndex < 51)
+    if (data->roundIndex < 51 || data->luckyTokenAmount < data->quotaOfTokensRequiredToWin)
     {
         if (data->scripAmount > 0 || data->luckyTokenAmount < data->quotaOfTokensRequiredToWin)
         {
@@ -274,7 +274,6 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
             {
                 // Player guessed wrong!
 
-                data->scripAmount -= data->scripAmountBetted;
                 data->scripAmount -= (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
                 data->threeCorrectGuessesInARow = 0;
@@ -296,7 +295,6 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
             {
                 // Player guessed wrong!
 
-                data->scripAmount -= data->scripAmountBetted;
                 data->scripAmount -= (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
                 data->threeCorrectGuessesInARow = 0;
@@ -319,7 +317,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
         }
     }
     
-    if (data->roundIndex > 51)
+    if (data->roundIndex > 50 || data->luckyTokenAmount < data->quotaOfTokensRequiredToWin)
     {
        data->levelIndex++;
        data->roundIndex = 0;
