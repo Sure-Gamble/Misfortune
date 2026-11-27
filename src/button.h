@@ -11,13 +11,20 @@ enum class ButtonType {
   START_GAME,
   HIGHER,
   LOWER,
-  CONVERT_SCRIP,
-  CONVERT_LUCKY,
+  TOKEN_MORE,
+  TOKEN_LESS,
+  SCRIP_MORE,
+  SCRIP_LESS,
+  QUOTA_1,
+  QUOTA_2,
+  QUOTA_3,
+  QUOTA_4,
+  QUOTA_5,
   BET_5,
   BET_10,
   BET_25,
-  BET_50,
   BET_100,
+  CONFIRM,
   QUIT
 };
 

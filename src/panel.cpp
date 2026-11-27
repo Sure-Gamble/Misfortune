@@ -102,21 +102,21 @@ void InitializeSidePanel(SidePanel* side_panel, GameData* data, FontAtlas* font)
     ValueBox_INIT(&side_panel->quota_int_3);
     ValueBox_INIT(&side_panel->quota_int_4);
 
-	SetupButton (&side_panel-> pay_off_1, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_1), Alignment::Left, font, "10");
-    SetupButton (&side_panel-> pay_off_2, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_2), Alignment::Left, font, "20");
-    SetupButton (&side_panel-> pay_off_3, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_3), Alignment::Left, font, "30");
-    SetupButton (&side_panel-> pay_off_4, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_4), Alignment::Left, font, "40");
-    SetupButton (&side_panel-> pay_off_5, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_5), Alignment::Left, font, "50");
+	SetupButton (&side_panel-> pay_off_1, ButtonType::QUOTA_1, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_1), Alignment::Left, font, "10");
+    SetupButton (&side_panel-> pay_off_2, ButtonType::QUOTA_2, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_2), Alignment::Left, font, "20");
+    SetupButton (&side_panel-> pay_off_3, ButtonType::QUOTA_3, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_3), Alignment::Left, font, "30");
+    SetupButton (&side_panel-> pay_off_4, ButtonType::QUOTA_4, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_4), Alignment::Left, font, "40");
+    SetupButton (&side_panel-> pay_off_5, ButtonType::QUOTA_5, data->spriteBuffer, GetElementRect(parent, ElementLayout::PAY_OFF_5), Alignment::Left, font, "50");
     SetupButton (&side_panel-> coin_slot_button, ButtonType::CONFIRM, data->spriteBuffer, GetElementRect(parent, ElementLayout::COIN_SLOT), Alignment::Left, font, "coin slot");
 
     side_panel-> conversion_ratio.box = GetElementRect(parent, ElementLayout::CONVERSION_RATIO);
     side_panel-> token_convert.box = GetElementRect(parent, ElementLayout::TOKEN_CONVERT);
     side_panel-> scrip_convert.box = GetElementRect(parent, ElementLayout::SCRIP_CONVERT);
 
-	SetupButton (&side_panel-> lucky_token_up, ButtonType::VALUE_UP, data->spriteBuffer, GetElementRect(parent, ElementLayout::TOKEN_UP), Alignment::Left, font, "LT up");
-	SetupButton (&side_panel-> lucky_token_down, ButtonType::VALUE_DOWN, data->spriteBuffer, GetElementRect(parent, ElementLayout::TOKEN_DOWN), Alignment::Left, font, "LT down");
-	SetupButton (&side_panel-> scrip_up, ButtonType::VALUE_UP, data->spriteBuffer, GetElementRect(parent, ElementLayout::SCRIP_UP), Alignment::Left, font, "scrip up");
-	SetupButton (&side_panel-> scrip_down, ButtonType::VALUE_DOWN, data->spriteBuffer, GetElementRect(parent, ElementLayout::SCRIP_DOWN), Alignment::Left, font, "scrip down");
+	SetupButton (&side_panel-> lucky_token_up, ButtonType::TOKEN_MORE, data->spriteBuffer, GetElementRect(parent, ElementLayout::TOKEN_UP), Alignment::Left, font, "LT up");
+	SetupButton (&side_panel-> lucky_token_down, ButtonType::TOKEN_LESS, data->spriteBuffer, GetElementRect(parent, ElementLayout::TOKEN_DOWN), Alignment::Left, font, "LT down");
+	SetupButton (&side_panel-> scrip_up, ButtonType::SCRIP_MORE, data->spriteBuffer, GetElementRect(parent, ElementLayout::SCRIP_UP), Alignment::Left, font, "scrip up");
+	SetupButton (&side_panel-> scrip_down, ButtonType::SCRIP_LESS, data->spriteBuffer, GetElementRect(parent, ElementLayout::SCRIP_DOWN), Alignment::Left, font, "scrip down");
 	SetupButton (&side_panel-> convert, ButtonType::CONFIRM, data->spriteBuffer, GetElementRect(parent, ElementLayout::CONVERT), Alignment::Left, font, "convert");
 }
 
@@ -159,8 +159,8 @@ void InitializeGamePanel(GamePanel* game_panel, GameData* data, FontAtlas* font)
     game_panel->covererd_card_icon_rect = GetElementRect(parent, ElementLayout::COVERED_CARD);
     game_panel->open_card_icon_rect = GetElementRect(parent, ElementLayout::OPEN_CARD);
 
-	SetupButton (&game_panel-> higher_button, ButtonType::VALUE_UP, data->spriteBuffer, GetElementRect(parent, ElementLayout::HIGHER), Alignment::Left, font, "higher");
-	SetupButton (&game_panel-> lower_button, ButtonType::VALUE_DOWN, data->spriteBuffer, GetElementRect(parent, ElementLayout::LOWER), Alignment::Left, font, "lower");
+	SetupButton (&game_panel-> higher_button, ButtonType::HIGHER, data->spriteBuffer, GetElementRect(parent, ElementLayout::HIGHER), Alignment::Left, font, "higher");
+	SetupButton (&game_panel-> lower_button, ButtonType::LOWER, data->spriteBuffer, GetElementRect(parent, ElementLayout::LOWER), Alignment::Left, font, "lower");
 }
 
 void RenderGamePanel(GamePanel* game_panel, SDL_Renderer* renderer, FontAtlas* font, Camera* camera){
@@ -191,10 +191,10 @@ void InitializeBetPanel(BetPanel* bet_panel, GameData* data, FontAtlas* font){
 
     SetupButton (&bet_panel-> bet_scrip_button, ButtonType::CONFIRM, data->spriteBuffer, GetElementRect(parent, ElementLayout::BET_BUTTON), Alignment::Left, font, "bet");
 	SetupButton (&bet_panel-> reset_bet_button, ButtonType::RESET, data->spriteBuffer, GetElementRect(parent, ElementLayout::RESET_BUTTON),  Alignment::Left, font, "reset");
-	SetupButton (&bet_panel-> value_1_button, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::VALUE_1), Alignment::Left, font, "Value 1");
-	SetupButton (&bet_panel-> value_2_button, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::VALUE_2), Alignment::Left, font, "value 2");
-	SetupButton (&bet_panel-> value_3_button, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::VALUE_3), Alignment::Left, font, "value 3");
-	SetupButton (&bet_panel-> value_4_button, ButtonType::VALUE_BUTTON, data->spriteBuffer, GetElementRect(parent, ElementLayout::VALUE_4), Alignment::Left, font, "value 3");
+	SetupButton (&bet_panel-> value_1_button, ButtonType::BET_5, data->spriteBuffer, GetElementRect(parent, ElementLayout::VALUE_1), Alignment::Left, font, "Value 1");
+	SetupButton (&bet_panel-> value_2_button, ButtonType::BET_10, data->spriteBuffer, GetElementRect(parent, ElementLayout::VALUE_2), Alignment::Left, font, "value 2");
+	SetupButton (&bet_panel-> value_3_button, ButtonType::BET_25, data->spriteBuffer, GetElementRect(parent, ElementLayout::VALUE_3), Alignment::Left, font, "value 3");
+	SetupButton (&bet_panel-> value_4_button, ButtonType::BET_100, data->spriteBuffer, GetElementRect(parent, ElementLayout::VALUE_4), Alignment::Left, font, "value 3");
 
     bet_panel-> bet_int_1.box = GetElementRect(parent, ElementLayout::BET_INT_1);
     bet_panel-> bet_int_2.box = GetElementRect(parent, ElementLayout::BET_INT_2);
