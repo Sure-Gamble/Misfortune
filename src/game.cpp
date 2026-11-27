@@ -58,6 +58,7 @@ extern "C" {
   data->scripAmount = 1000;  
   data->scripAmountBetted = 25;
   data->roundIndex = 0;
+  data->levelIndex = 0;
   data->drawTheCorrectCardOnScreen = 0;
   data->drawThePreviousCardOnScreen = 0;
   data->threeCorrectGuessesInARow = 0;
@@ -265,6 +266,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 data->luckyTokenAmount++;
                 data->scripAmount += (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
+                data->threeCorrectGuessesInARow++;
 
                 data->higherOrLower = 70;
             }
@@ -275,6 +277,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 data->scripAmount -= data->scripAmountBetted;
                 data->scripAmount -= (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
+                data->threeCorrectGuessesInARow = 0;
 
                 data->higherOrLower = 72;
             }
@@ -285,6 +288,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 data->luckyTokenAmount++;
                 data->scripAmount += (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
+                data->threeCorrectGuessesInARow++;
 
                 data->higherOrLower = 71;
             }
@@ -295,6 +299,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 data->scripAmount -= data->scripAmountBetted;
                 data->scripAmount -= (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
+                data->threeCorrectGuessesInARow = 0;
 
                 data->higherOrLower = 72;
             }
@@ -306,11 +311,21 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 }
                 data->roundIndex++;
             }  
+            if (data->threeCorrectGuessesInARow == 3)
+            {
+                data->scripAmount += 25;
+                data->threeCorrectGuessesInARow = 0;
+            }
         }
     }
-
-   
-
+    
+    if (data->roundIndex > 51)
+    {
+       data->levelIndex++;
+       data->roundIndex = 0;
+       data->quotaOfTokensRequiredToWin += 10;
+      // data->levelDifficultyModifier += 10;
+    }
          
         
 
