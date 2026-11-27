@@ -317,12 +317,11 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
         }
     }
     
-    if (data->roundIndex > 51 || data->luckyTokenAmount < data->quotaOfTokensRequiredToWin)
+    if (data->roundIndex > 50 || data->luckyTokenAmount < data->quotaOfTokensRequiredToWin)
     {
        data->levelIndex++;
        data->roundIndex = 0;
        data->quotaOfTokensRequiredToWin += 10;
-       data->DECK_SIZE
       // data->levelDifficultyModifier += 10;
     }
          
