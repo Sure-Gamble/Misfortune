@@ -1,4 +1,4 @@
-# Install script for directory: C:/LOCAL/GD26/PROJECTS/Misfortune
+# Install script for directory: C:/Users/area5/Documents/PROJECTS/Misfortune
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,7 +38,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}" TYPE EXECUTABLE FILES "C:/LOCAL/GD26/PROJECTS/Misfortune/build/flappybird.exe")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}" TYPE EXECUTABLE FILES "C:/Users/area5/Documents/PROJECTS/Misfortune/build/flappybird.exe")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/flappybird.exe" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/flappybird.exe")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -48,11 +48,11 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/install-cxx-module-bmi-Debug.cmake" OPTIONAL)
+  include("C:/Users/area5/Documents/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir/install-cxx-module-bmi-Debug.cmake" OPTIONAL)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}" TYPE SHARED_LIBRARY FILES "C:/LOCAL/GD26/PROJECTS/Misfortune/build/flappybird_game.dll")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}" TYPE SHARED_LIBRARY FILES "C:/Users/area5/Documents/PROJECTS/Misfortune/build/flappybird_game.dll")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/flappybird_game.dll" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/flappybird_game.dll")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -63,22 +63,22 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}" TYPE FILE FILES
-    "C:/LOCAL/GD26/PROJECTS/Misfortune/lib/FMOD/fmod.dll"
-    "C:/LOCAL/GD26/PROJECTS/Misfortune/lib/FMOD/fmodL.dll"
-    "C:/LOCAL/GD26/PROJECTS/Misfortune/lib/SDL3/SDL3.dll"
-    "C:/LOCAL/GD26/PROJECTS/Misfortune/lib/SDL3_Image/SDL3_image.dll"
-    "C:/LOCAL/GD26/PROJECTS/Misfortune/lib/SDL_TTF/SDL3_ttf.dll"
+    "C:/Users/area5/Documents/PROJECTS/Misfortune/lib/FMOD/fmod.dll"
+    "C:/Users/area5/Documents/PROJECTS/Misfortune/lib/FMOD/fmodL.dll"
+    "C:/Users/area5/Documents/PROJECTS/Misfortune/lib/SDL3/SDL3.dll"
+    "C:/Users/area5/Documents/PROJECTS/Misfortune/lib/SDL3_Image/SDL3_image.dll"
+    "C:/Users/area5/Documents/PROJECTS/Misfortune/lib/SDL_TTF/SDL3_ttf.dll"
     )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}" TYPE DIRECTORY FILES "C:/LOCAL/GD26/PROJECTS/Misfortune/build/assets")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}" TYPE DIRECTORY FILES "C:/Users/area5/Documents/PROJECTS/Misfortune/build/assets")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/LOCAL/GD26/PROJECTS/Misfortune/build/install_local_manifest.txt"
+  file(WRITE "C:/Users/area5/Documents/PROJECTS/Misfortune/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -94,6 +94,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/LOCAL/GD26/PROJECTS/Misfortune/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/Users/area5/Documents/PROJECTS/Misfortune/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
