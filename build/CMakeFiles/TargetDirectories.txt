@@ -1,0 +1,9 @@
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_common.dir
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird.dir
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/flappybird_game.dir
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/edit_cache.dir
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/rebuild_cache.dir
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/list_install_components.dir
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/install.dir
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/install/local.dir
+C:/LOCAL/GD26/PROJECTS/Misfortune/build/CMakeFiles/install/strip.dir

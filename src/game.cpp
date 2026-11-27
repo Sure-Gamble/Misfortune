@@ -4,6 +4,7 @@
 #include "SDL3/SDL_mouse.h"
 #include "SDL3/SDL_oldnames.h"
 #include "SDL3/SDL_render.h"
+#include "SDL3/SDL_scancode.h"
 #include "SDL3/SDL_video.h"
 #include "audioSystem.h"
 #include "button.h"
@@ -57,8 +58,10 @@ extern "C" {
   data->scripAmount = 1000;  
   data->scripAmountBetted = 25;
   data->roundIndex = 0;
+  data->levelIndex = 0;
   data->drawTheCorrectCardOnScreen = 0;
   data->drawThePreviousCardOnScreen = 0;
+  data->threeCorrectGuessesInARow = 0;
 
   for (int i = 0; i < data->DECK_SIZE; ++i){
   // Card* card = &data->cards[i];
@@ -157,18 +160,59 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
 
     if (data->roundIndex < 51)
     {
-        if (data->scripAmount > 0 || data->luckyTokenAmount > data->quotaOfTokensRequiredToWin)
+        if (data->scripAmount > 0 || data->luckyTokenAmount < data->quotaOfTokensRequiredToWin)
         {
          int currentlyShownCardRank = data->cards[data->roundIndex].rank;
          int pickedCardRank = data->cards[data->roundIndex + 1].rank; // will crash if deck does not contain any cards!
 
-         bool playerPressedUp = KeyPressed(&data->input, SDL_SCANCODE_UP);
-         bool playerPressedDown = KeyPressed(&data->input, SDL_SCANCODE_DOWN);
-
-        // bool playerPressedUp = data->buttons[0].is_active;
-        // bool playerPressedDown = MouseReleased(&data->input, SDL_MOUSEBUTTONDOWN);
 
 
+         bool convertLuckyTokensToScrip = KeyPressed(&data->input, SDL_SCANCODE_S);
+
+         if (convertLuckyTokensToScrip == true && data->luckyTokenAmount >= 1)
+         {
+             data->luckyTokenAmount -= 1;
+             data->scripAmount += 25;
+         }
+
+         bool convertScripToLuckyTokens = KeyPressed(&data->input, SDL_SCANCODE_L);
+
+         if (convertScripToLuckyTokens == true && data->scripAmount >= 25)
+         {
+             data->luckyTokenAmount += 1;
+             data->scripAmount -= 25;
+         }
+
+
+
+         bool playerIncreasedBet = KeyPressed(&data->input, SDL_SCANCODE_RIGHT);
+         bool playerDecreasedBet = KeyPressed(&data->input, SDL_SCANCODE_LEFT);
+
+         if (playerIncreasedBet == true || playerDecreasedBet == true)
+         {
+            if (playerIncreasedBet == true && playerDecreasedBet == false)
+            {
+             data->scripAmountBetted += 25;
+            }
+            else if (playerIncreasedBet == false && playerDecreasedBet == true) 
+            {
+             data->scripAmountBetted -= 25;
+            }
+         }
+
+         if (data->scripAmountBetted > 100)
+         {
+            data->scripAmountBetted = 100;
+         }
+
+         if (data->scripAmountBetted < 0)
+         {
+            data->scripAmountBetted = 0;
+         }
+
+       
+
+        
 
 
          // mouse position
@@ -180,11 +224,27 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
          bool mouseReleasedNow   = !mouseDown && data->prevMouseDown;
          data->prevMouseDown     = mouseDown;
 
-         for(int i = 0; i<data->buttonCount; i++){
+        for(int i = 0; i<data->buttonCount; i++)
+        {
             UpdateButton(&data->buttons[i], data, mx, my, mouseDown, mousePressedNow, mouseReleasedNow);
         }
 
 
+
+        Button* b1 = &data->buttons[0];
+        Button* b2 = &data->buttons[1];
+
+
+
+        // bool playerPressedUp = data->buttons[0].is_active;
+        // bool playerPressedDown = KeyPressed(&data->input, SDL_SCANCODE_DOWN);
+
+        
+    
+
+        
+         bool playerPressedUp = KeyPressed(&data->input, SDL_SCANCODE_UP);
+         bool playerPressedDown = KeyPressed(&data->input, SDL_SCANCODE_DOWN);
 
 
 
@@ -206,6 +266,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 data->luckyTokenAmount++;
                 data->scripAmount += (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
+                data->threeCorrectGuessesInARow++;
 
                 data->higherOrLower = 70;
             }
@@ -214,8 +275,9 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 // Player guessed wrong!
 
                 data->scripAmount -= data->scripAmountBetted;
-
+                data->scripAmount -= (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
+                data->threeCorrectGuessesInARow = 0;
 
                 data->higherOrLower = 72;
             }
@@ -226,6 +288,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 data->luckyTokenAmount++;
                 data->scripAmount += (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
+                data->threeCorrectGuessesInARow++;
 
                 data->higherOrLower = 71;
             }
@@ -234,8 +297,9 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 // Player guessed wrong!
 
                 data->scripAmount -= data->scripAmountBetted;
-
+                data->scripAmount -= (data->scripAmountBetted * data->equalCardBonus);
                 data->equalCardBonus = 1;
+                data->threeCorrectGuessesInARow = 0;
 
                 data->higherOrLower = 72;
             }
@@ -247,11 +311,21 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
                 }
                 data->roundIndex++;
             }  
+            if (data->threeCorrectGuessesInARow == 3)
+            {
+                data->scripAmount += 25;
+                data->threeCorrectGuessesInARow = 0;
+            }
         }
     }
-
-   
-
+    
+    if (data->roundIndex > 51)
+    {
+       data->levelIndex++;
+       data->roundIndex = 0;
+       data->quotaOfTokensRequiredToWin += 10;
+      // data->levelDifficultyModifier += 10;
+    }
          
         
 
@@ -465,19 +539,6 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
 
 
 
-// Right Button pic at the right time
-    for(int i = 0; i < data->buttonCount; i++){
-        Button* b = &data->buttons[i];
-        Sprite* s = b->sprite;
-
-int cols = (s->sprite_count_x < 1) ? 1 : s->sprite_count_x; //I think this is for how many sprites
-
-        float frameW = s->width / (float)cols;      //width of one column/button
-        int frame = (cols > 1) ? (int)b->state : 0; //Wich "frame" are currently showing.
-
- SDL_FRect src { frameW * (int)b->state, 0, frameW, (float)s->height };
-        SDL_RenderTexture(renderer, s->texture, &src, &b->rect);        //Where and how big button
-    }
 
 
 
@@ -1041,15 +1102,31 @@ int cols = (s->sprite_count_x < 1) ? 1 : s->sprite_count_x; //I think this is fo
    //    // Jag måste kolla var någonstans den är i Arrayen
    // }
     SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->higherOrLower), data->spriteBuffer)->texture, NULL, &card_pos2);
-    if (data->scripAmount == 0 || data->roundIndex == 51)
+    if (data->scripAmount <= 0 || data->roundIndex == 51)
     {
        SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::GameOverScreen), data->spriteBuffer)->texture, NULL, &card_pos5); 
     }
-    if (data->luckyTokenAmount == data->quotaOfTokensRequiredToWin)
+    if (data->luckyTokenAmount >= data->quotaOfTokensRequiredToWin)
     {
        SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::VictoryScreen), data->spriteBuffer)->texture, NULL, &card_pos6); 
     }
     
+
+
+    // Right Button pic at the right time
+    for(int i = 0; i < data->buttonCount; i++){
+        Button* b = &data->buttons[i];
+        Sprite* s = b->sprite;
+
+int cols = (s->sprite_count_x < 1) ? 1 : s->sprite_count_x; //I think this is for how many sprites
+
+        float frameW = s->width / (float)cols;      //width of one column/button
+        int frame = (cols > 1) ? (int)b->state : 0; //Wich "frame" are currently showing.
+
+ SDL_FRect src { frameW * (int)b->state, 0, frameW, (float)s->height };
+        SDL_RenderTexture(renderer, s->texture, &src, &b->rect);        //Where and how big button
+    }
+
 
     
 

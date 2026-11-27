@@ -37,6 +37,8 @@ struct GameData {
   static const int DECK_SIZE = 52;
   Card cards[DECK_SIZE];
   int roundIndex;
+  int levelIndex;
+  int levelDifficultyModifier;
   int drawTheCorrectCardOnScreen;
   int drawThePreviousCardOnScreen;
   int higherOrLower;
@@ -45,6 +47,7 @@ struct GameData {
   int luckyTokenAmount;
   int quotaOfTokensRequiredToWin;
   int equalCardBonus;
+  int threeCorrectGuessesInARow;
 
   // knappstuff
   bool prevMouseDown = false;         // var musknappen nedtryckt förra framen?
