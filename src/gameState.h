@@ -45,6 +45,7 @@ struct GameData {
   int luckyTokenAmount;
   int quotaOfTokensRequiredToWin;
   int equalCardBonus;
+  int threeCorrectGuessesInARow;
 
   // knappstuff
   bool prevMouseDown = false;         // var musknappen nedtryckt förra framen?
