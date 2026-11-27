@@ -97,7 +97,9 @@ enum class SPRITE_ID{
   GameOverScreen,
   VictoryScreen,
 
-  buttonTest01
+  buttonTest01,
+  button_higher_OFFHOVERON,
+  button_lower_OFFHOVERON
 };
 
 const int NOT_SET = -1;

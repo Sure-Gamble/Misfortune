@@ -101,6 +101,9 @@ static const SpriteDataEntry all_sprite_data[] = {
   {SPRITE_ID::GameOverScreen, "assets/sprites/gameOverScreen.png"},
   {SPRITE_ID::VictoryScreen, "assets/sprites/victoryScreen.png"},
 
+  {SPRITE_ID::button_higher_OFFHOVERON, "assets/sprites/button_higher_OFFHOVERON.png", 0, 0, 3, 1},
+  {SPRITE_ID::button_lower_OFFHOVERON, "assets/sprites/button_lower_OFFHOVERON.png", 0, 0, 3, 1},
+
   {SPRITE_ID::layoutTest, "assets/sprites/Background.png"},
   {SPRITE_ID::buttonTest01, "assets/sprites/buttonTest01.png", 0, 0, 3, 1}  //x, y, squares-x, squares-y
   };

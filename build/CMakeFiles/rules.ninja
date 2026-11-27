@@ -16,7 +16,7 @@
 
 rule CXX_SCAN__flappybird_common_Debug
   depfile = $DEP_FILE
-  command = C:\Windows\system32\cmd.exe /C ""C:/Program Files/LLVM/bin/clang-scan-deps.exe" -format=p1689 -- "C:\Program Files\LLVM\bin\clang++.exe" $DEFINES $INCLUDES $FLAGS -x c++ $in -c -o $OBJ_FILE -resource-dir "C:/Program Files/LLVM/lib/clang/23" -MT $DYNDEP_INTERMEDIATE_FILE -MD -MF $DEP_FILE > $DYNDEP_INTERMEDIATE_FILE.tmp && "C:/Program Files/CMake/bin/cmake.exe" -E rename $DYNDEP_INTERMEDIATE_FILE.tmp $DYNDEP_INTERMEDIATE_FILE"
+  command = C:\Windows\system32\cmd.exe /C ""C:/Program Files/LLVM/bin/clang-scan-deps.exe" -format=p1689 -- "C:\Program Files\LLVM\bin\clang++.exe" $DEFINES $INCLUDES $FLAGS -x c++ $in -c -o $OBJ_FILE -resource-dir "C:/Program Files/LLVM/lib/clang/22" -MT $DYNDEP_INTERMEDIATE_FILE -MD -MF $DEP_FILE > $DYNDEP_INTERMEDIATE_FILE.tmp && "C:/Program Files/CMake/bin/cmake.exe" -E rename $DYNDEP_INTERMEDIATE_FILE.tmp $DYNDEP_INTERMEDIATE_FILE"
   description = Scanning $in for CXX dependencies
 
 
@@ -65,7 +65,7 @@ rule CXX_STATIC_LIBRARY_LINKER__flappybird_common_Debug
 
 rule CXX_SCAN__flappybird_Debug
   depfile = $DEP_FILE
-  command = C:\Windows\system32\cmd.exe /C ""C:/Program Files/LLVM/bin/clang-scan-deps.exe" -format=p1689 -- "C:\Program Files\LLVM\bin\clang++.exe" $DEFINES $INCLUDES $FLAGS -x c++ $in -c -o $OBJ_FILE -resource-dir "C:/Program Files/LLVM/lib/clang/23" -MT $DYNDEP_INTERMEDIATE_FILE -MD -MF $DEP_FILE > $DYNDEP_INTERMEDIATE_FILE.tmp && "C:/Program Files/CMake/bin/cmake.exe" -E rename $DYNDEP_INTERMEDIATE_FILE.tmp $DYNDEP_INTERMEDIATE_FILE"
+  command = C:\Windows\system32\cmd.exe /C ""C:/Program Files/LLVM/bin/clang-scan-deps.exe" -format=p1689 -- "C:\Program Files\LLVM\bin\clang++.exe" $DEFINES $INCLUDES $FLAGS -x c++ $in -c -o $OBJ_FILE -resource-dir "C:/Program Files/LLVM/lib/clang/22" -MT $DYNDEP_INTERMEDIATE_FILE -MD -MF $DEP_FILE > $DYNDEP_INTERMEDIATE_FILE.tmp && "C:/Program Files/CMake/bin/cmake.exe" -E rename $DYNDEP_INTERMEDIATE_FILE.tmp $DYNDEP_INTERMEDIATE_FILE"
   description = Scanning $in for CXX dependencies
 
 
@@ -114,7 +114,7 @@ rule CXX_EXECUTABLE_LINKER__flappybird_Debug
 
 rule CXX_SCAN__flappybird_game_Debug
   depfile = $DEP_FILE
-  command = C:\Windows\system32\cmd.exe /C ""C:/Program Files/LLVM/bin/clang-scan-deps.exe" -format=p1689 -- "C:\Program Files\LLVM\bin\clang++.exe" $DEFINES $INCLUDES $FLAGS -x c++ $in -c -o $OBJ_FILE -resource-dir "C:/Program Files/LLVM/lib/clang/23" -MT $DYNDEP_INTERMEDIATE_FILE -MD -MF $DEP_FILE > $DYNDEP_INTERMEDIATE_FILE.tmp && "C:/Program Files/CMake/bin/cmake.exe" -E rename $DYNDEP_INTERMEDIATE_FILE.tmp $DYNDEP_INTERMEDIATE_FILE"
+  command = C:\Windows\system32\cmd.exe /C ""C:/Program Files/LLVM/bin/clang-scan-deps.exe" -format=p1689 -- "C:\Program Files\LLVM\bin\clang++.exe" $DEFINES $INCLUDES $FLAGS -x c++ $in -c -o $OBJ_FILE -resource-dir "C:/Program Files/LLVM/lib/clang/22" -MT $DYNDEP_INTERMEDIATE_FILE -MD -MF $DEP_FILE > $DYNDEP_INTERMEDIATE_FILE.tmp && "C:/Program Files/CMake/bin/cmake.exe" -E rename $DYNDEP_INTERMEDIATE_FILE.tmp $DYNDEP_INTERMEDIATE_FILE"
   description = Scanning $in for CXX dependencies
 
 
@@ -170,7 +170,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = "C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -SC:\LOCAL\GD26\PROJECTS\Misfortune -BC:\LOCAL\GD26\PROJECTS\Misfortune\build
+  command = "C:\Program Files\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\area5\Documents\PROJECTS\Misfortune -BC:\Users\area5\Documents\PROJECTS\Misfortune\build
   description = Re-running CMake...
   generator = 1
 
@@ -179,7 +179,7 @@ rule RERUN_CMAKE
 # Rule for re-checking globbed directories.
 
 rule VERIFY_GLOBS
-  command = "C:\Program Files\CMake\bin\cmake.exe" -P C:\LOCAL\GD26\PROJECTS\Misfortune\build\CMakeFiles\VerifyGlobs.cmake
+  command = "C:\Program Files\CMake\bin\cmake.exe" -P C:\Users\area5\Documents\PROJECTS\Misfortune\build\CMakeFiles\VerifyGlobs.cmake
   description = Re-checking globbed directories...
   generator = 1
 
@@ -188,7 +188,7 @@ rule VERIFY_GLOBS
 # Rule for cleaning all built files.
 
 rule CLEAN
-  command = C:\LOCAL\GD26\downloads\ninja-win\ninja.exe $FILE_ARG -t clean $TARGETS
+  command = C:\Users\area5\Documents\PROJECTS\Ninja\ninja.exe $FILE_ARG -t clean $TARGETS
   description = Cleaning all built files...
 
 
@@ -196,6 +196,6 @@ rule CLEAN
 # Rule for printing all primary targets available.
 
 rule HELP
-  command = C:\LOCAL\GD26\downloads\ninja-win\ninja.exe -t targets
+  command = C:\Users\area5\Documents\PROJECTS\Ninja\ninja.exe -t targets
   description = All primary targets available:
 

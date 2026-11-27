@@ -35,10 +35,10 @@ void SetupButton(Button* button, ButtonType type, Sprite* spriteBuffer, SDL_FRec
     button->sprite = GetSprite(SPRITE_ID::Button_Basic, spriteBuffer);
     break;
   case ButtonType::HIGHER:
-    button->sprite = GetSprite(SPRITE_ID::buttonTest01, spriteBuffer);
+    button->sprite = GetSprite(SPRITE_ID::button_higher_OFFHOVERON, spriteBuffer);
     break;
   case ButtonType::LOWER:
-    button->sprite = GetSprite(SPRITE_ID::Fallback, spriteBuffer);
+    button->sprite = GetSprite(SPRITE_ID::button_lower_OFFHOVERON, spriteBuffer);
     break;
   case ButtonType::CONVERT_SCRIP:
     button->sprite = GetSprite(SPRITE_ID::Fallback, spriteBuffer);

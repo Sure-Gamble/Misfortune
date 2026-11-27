@@ -92,6 +92,7 @@ void DEV::Draw(GameData* data, SDL_Renderer* renderer){
   ImGui::Text("quotaOfTokensRequiredToWin: %d", data->quotaOfTokensRequiredToWin);
   ImGui::Text("equalCardBonus: %d", data->equalCardBonus);
   ImGui::Text("roundIndex: %d", data->roundIndex);
+  ImGui::Text("levelIndex: %d", data->levelIndex);
 
   ImGui::End();
 

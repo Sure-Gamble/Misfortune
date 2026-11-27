@@ -44,8 +44,8 @@ extern "C" {
 
 
     // Initialize Buttons
-    SetupButton(&data->buttons[0], ButtonType::HIGHER, data->spriteBuffer, SDL_FRect{300, 600, 150, 60}, Alignment::Centered, nullptr, "");
-    SetupButton(&data->buttons[1], ButtonType::LOWER, data->spriteBuffer, SDL_FRect{500, 600, 150, 60}, Alignment::Centered, nullptr, "");
+    SetupButton(&data->buttons[0], ButtonType::HIGHER, data->spriteBuffer, SDL_FRect{950, 600, 300, 120}, Alignment::Centered, nullptr, "");
+    SetupButton(&data->buttons[1], ButtonType::LOWER, data->spriteBuffer, SDL_FRect{1300, 600, 300, 120}, Alignment::Centered, nullptr, "");
     data->buttonCount = 2;
     data->prevMouseDown = false;    //start value
     data->higherOrLower = 0;        //start value
@@ -53,15 +53,15 @@ extern "C" {
 
 
   data->equalCardBonus = 1;
-  data->luckyTokenAmount = 1;
-  data->quotaOfTokensRequiredToWin = 200;
-  data->scripAmount = 1000;  
+  data->luckyTokenAmount = 0;
+  data->quotaOfTokensRequiredToWin = 15;
+  data->scripAmount = 100;  
   data->scripAmountBetted = 25;
   data->roundIndex = 0;
   data->levelIndex = 0;
+  data->threeCorrectGuessesInARow = 0;
   data->drawTheCorrectCardOnScreen = 0;
   data->drawThePreviousCardOnScreen = 0;
-  data->threeCorrectGuessesInARow = 0;
 
   for (int i = 0; i < data->DECK_SIZE; ++i){
   // Card* card = &data->cards[i];
@@ -317,11 +317,13 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
         }
     }
     
-    if (data->roundIndex > 50 || data->luckyTokenAmount < data->quotaOfTokensRequiredToWin)
+    if (data->roundIndex > 50 || data->luckyTokenAmount >= data->quotaOfTokensRequiredToWin)
     {
        data->levelIndex++;
        data->roundIndex = 0;
+       data->luckyTokenAmount = 0;
        data->quotaOfTokensRequiredToWin += 10;
+       ShuffleDeck(data);
       // data->levelDifficultyModifier += 10;
     }
          
@@ -1100,14 +1102,7 @@ void AddButton(GameData* data, ButtonType type, SDL_FRect rect){
    //    // Jag måste kolla var någonstans den är i Arrayen
    // }
     SDL_RenderTexture(renderer, GetSprite((SPRITE_ID)(data->higherOrLower), data->spriteBuffer)->texture, NULL, &card_pos2);
-    if (data->scripAmount <= 0 || data->roundIndex == 51)
-    {
-       SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::GameOverScreen), data->spriteBuffer)->texture, NULL, &card_pos5); 
-    }
-    if (data->luckyTokenAmount >= data->quotaOfTokensRequiredToWin)
-    {
-       SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::VictoryScreen), data->spriteBuffer)->texture, NULL, &card_pos6); 
-    }
+    
     
 
 
@@ -1125,7 +1120,14 @@ int cols = (s->sprite_count_x < 1) ? 1 : s->sprite_count_x; //I think this is fo
         SDL_RenderTexture(renderer, s->texture, &src, &b->rect);        //Where and how big button
     }
 
-
+    if (data->scripAmount <= 0)
+    {
+       SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::GameOverScreen), data->spriteBuffer)->texture, NULL, &card_pos5); 
+    }
+    if (data->luckyTokenAmount >= data->quotaOfTokensRequiredToWin && data->levelIndex == 3)
+    {
+       SDL_RenderTexture(renderer, GetSprite((SPRITE_ID::VictoryScreen), data->spriteBuffer)->texture, NULL, &card_pos6); 
+    }
     
 
      // SDL_RenderTexture(renderer, GetSprite(SPRITE_ID::Ace_of_diamond, data->spriteBuffer)->texture, NULL, &card_pos); card_pos.x += card_pos.w;
